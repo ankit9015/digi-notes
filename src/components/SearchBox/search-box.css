@@ -1,0 +1,14 @@
+.search-box {
+  display: flex;
+  gap: 5px;
+  border: 2px solid var(--black);
+  padding: 5px;
+  height: 2rem;
+  align-items: center;
+  width: 30rem;
+}
+
+.search-box input {
+  border: none;
+  flex: 1;
+}

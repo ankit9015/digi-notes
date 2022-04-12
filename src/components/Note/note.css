@@ -1,0 +1,31 @@
+.note {
+  padding: 1rem;
+  border: 2px solid var(--black);
+  width: 70rem;
+  gap: 5px;
+}
+
+.note-content {
+  display: inherit;
+  gap: 5px;
+}
+
+.note-content * {
+  border: none;
+  background-color: var(--gray);
+}
+
+.note-pin {
+  z-index: 99;
+  margin: 5px 5px 5px auto;
+}
+
+.note-footer {
+  padding: 5px;
+}
+
+.note-buttons {
+  margin-left: auto;
+  display: inherit;
+  gap: 5px;
+}
