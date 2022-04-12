@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { BsPin } from "react-icons/bs";
-import { BiArchiveIn, BiTrashAlt } from "react-icons/bi";
-import { MdOutlineLabel, MdOutlineColorLens } from "react-icons/md";
+import {
+  MdOutlineColorLens,
+  BiArchiveIn,
+  BiTrashAlt,
+  BsPin,
+  MdOutlineLabel,
+} from "../../utils/icons/icons";
 import "./note.css";
 
 function Note() {

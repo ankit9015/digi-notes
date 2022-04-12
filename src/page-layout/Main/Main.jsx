@@ -1,11 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Archive from "../../pages/Archive/Archive";
-import Home from "../../pages/Home/Home";
-import Login from "../../pages/Login/Login";
-import PageNotFound from "../../pages/PageNotFound/PageNotFound";
-import Profile from "../../pages/Profile/Profile";
-import Trash from "../../pages/Trash/Trash";
+import {
+  Home,
+  Login,
+  Trash,
+  Archive,
+  Profile,
+  PageNotFound,
+} from "../../pages/pages";
 import Navbar from "../Navbar/Navbar";
 import "../page-layout.css";
 

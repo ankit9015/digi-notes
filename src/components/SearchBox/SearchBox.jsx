@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaSearch, FaFilter } from "../../utils/icons/icons";
 import "./search-box.css";
 
 function SearchBox(props) {
