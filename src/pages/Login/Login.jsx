@@ -58,25 +58,6 @@ function Login() {
                   })
                 }
               />
-              {/* <label className="flex-column">
-                <span className="text-md socketui-label label-required">
-                  Email:
-                </span>
-                <input
-                  className="socketui-input email-input text-md"
-                  type="email"
-                  name="email"
-                  placeholder="xyz@abc.com"
-                  required
-                  value={loginForm.email}
-                  onChange={(e) =>
-                    setLoginForm({
-                      ...loginForm,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </label> */}
               <PasswordInput
                 value={loginForm.password}
                 onChange={(e) =>
