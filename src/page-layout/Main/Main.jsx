@@ -10,6 +10,7 @@ import {
   Profile,
   PageNotFound,
 } from "../../pages/pages";
+import PrivateRoute from "../../Routes/PrivateRoute";
 import Navbar from "../Navbar/Navbar";
 import "../page-layout.css";
 
@@ -26,7 +27,14 @@ function Main() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/trash" element={<Trash />} />
           <Route path="/archive" element={<Archive />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/mockman" element={<MockAPI />} />
         </Routes>

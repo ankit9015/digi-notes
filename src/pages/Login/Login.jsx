@@ -1,56 +1,47 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "../../utils/icons/icons";
-import axios from "axios";
 
 import "../pages.css";
+import { useAuth } from "../../context/AuthContext/AuthContext";
+import PasswordInput from "../../components/PasswordInput/PasswordInput";
+import EmailInput from "../../components/EmailInput/EmailInput";
 
 function Login() {
+  const { loginHandler } = useAuth();
+
+  const savedLoginInfo = JSON.parse(localStorage.getItem("SAVED-LOGIN-INFO"));
+
   const [loginForm, setLoginForm] = useState({
-    username: "",
-    email: "",
-    password: "",
-    rememberUser: false,
+    email: savedLoginInfo ? savedLoginInfo.email : "",
+    password: savedLoginInfo ? savedLoginInfo.password : "",
+    rememberUser: savedLoginInfo ? true : false,
   });
+
+  const guestUser = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshBalika123",
+    rememberUser: false,
+  };
 
   useEffect(() => {
     document.title = "Login";
   }, []);
 
-  const updateLoginForm = (e) => {
-    e.target.name === "rememberUser"
-      ? setLoginForm({
-          ...loginForm,
-          rememberUser: !loginForm.rememberUser,
-        })
-      : setLoginForm({
-          ...loginForm,
-          [e.target.name]: e.target.value,
-        });
-  };
-
-  const postLoginBackend = async (loginForm) => {
-    try {
-      const response = await axios.post("/api/auth/login", loginForm);
-
-      localStorage.setItem("userToken", response.data.encodedToken);
-    } catch (err) {
-      console.log(err);
+  const loginAccount = ({ email, password, rememberUser }) => {
+    if (rememberUser) {
+      localStorage.setItem(
+        "SAVED-LOGIN-INFO",
+        JSON.stringify({ email: email, password: password })
+      );
     }
+    loginHandler({ email, password });
   };
 
-  const loginAccount = () => {
-    const { email, password, rememberUser } = loginForm;
-    console.log(loginForm);
-    if (email !== "" && password !== "" && rememberUser) {
-      postLoginBackend({ email: email, password: password });
-    }
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div>
+    <>
       <div className="flex-row flex-center login-main">
         <div className="card-vertical p-m form-card card-shadow ">
           <div className="card-body text-md">
@@ -58,7 +49,16 @@ function Login() {
               Login
             </h1>
             <div className="form-container ">
-              <label className="flex-column">
+              <EmailInput
+                value={loginForm.email}
+                onChange={(e) =>
+                  setLoginForm({
+                    ...loginForm,
+                    email: e.target.value,
+                  })
+                }
+              />
+              {/* <label className="flex-column">
                 <span className="text-md socketui-label label-required">
                   Email:
                 </span>
@@ -69,38 +69,35 @@ function Login() {
                   placeholder="xyz@abc.com"
                   required
                   value={loginForm.email}
-                  onChange={(e) => updateLoginForm(e)}
+                  onChange={(e) =>
+                    setLoginForm({
+                      ...loginForm,
+                      email: e.target.value,
+                    })
+                  }
                 />
-              </label>
-              <label className="flex-column">
-                <span className="text-md socketui-label label-required">
-                  Password:
-                </span>
-                <div className="flex-row input-border">
-                  <input
-                    className="socketui-input password-input text-md"
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="******"
-                    required
-                    value={loginForm.password}
-                    onChange={(e) => updateLoginForm(e)}
-                  ></input>
-                  <span
-                    className="text-blue password-show"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                  >
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                  </span>
-                </div>
-              </label>
+              </label> */}
+              <PasswordInput
+                value={loginForm.password}
+                onChange={(e) =>
+                  setLoginForm({
+                    ...loginForm,
+                    password: e.target.value,
+                  })
+                }
+              />
 
               <label>
                 <input
                   type="checkbox"
                   name="rememberUser"
-                  value={loginForm.rememberUser}
-                  onChange={(e) => updateLoginForm(e)}
+                  checked={loginForm.rememberUser}
+                  onChange={() =>
+                    setLoginForm({
+                      ...loginForm,
+                      rememberUser: !loginForm.rememberUser,
+                    })
+                  }
                 />
                 <span className="text-md">Remember me</span>
               </label>
@@ -108,16 +105,21 @@ function Login() {
               <Link className="text-blue" to="">
                 Forgot your Password?
               </Link>
-              <Link
-                to=""
-                className="button-primary button link-btn text-md text-center"
-                onClick={() => loginAccount()}
+              <button
+                className="button-primary button  text-md text-center"
+                onClick={() => loginAccount(loginForm)}
               >
                 Login
-              </Link>
+              </button>
+              <button
+                className="button-outline-secondary button  text-md text-center"
+                onClick={() => loginAccount(guestUser)}
+              >
+                Login as Guest
+              </button>
 
               <Link
-                className="text-center text-md button link-btn button-outline-secondary"
+                className="text-center text-lg button link-btn button-secondary"
                 to="../Signup"
               >
                 Create new account
@@ -126,7 +128,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
