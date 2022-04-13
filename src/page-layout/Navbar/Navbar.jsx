@@ -40,6 +40,13 @@ function Navbar() {
       >
         Profile
       </NavLink>
+      <NavLink
+        className="m-s text-lg no-link"
+        to="/mockman"
+        style={getActiveLinkStyle}
+      >
+        MockMan
+      </NavLink>
 
       <button className="button button-primary text-md">
         <span>Create New Note</span>
