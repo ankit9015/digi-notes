@@ -4,14 +4,14 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 
 function Notes() {
   return (
-    <div className="flex-column flex-align-center">
+    <div className="flex-column flex-align-center gap-5">
       <SearchBox />
 
-      <div className="flex-column m-l p-l">
-        <div className="pinned-notes"></div>
-        <div className="user-notes"></div>
-        <Note />
-      </div>
+      {/* <div className="flex-column m-l p-l"> */}
+      <div className="pinned-notes"></div>
+      <div className="user-notes"></div>
+      <Note />
+      {/* </div> */}
     </div>
   );
 }
