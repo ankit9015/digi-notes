@@ -1,6 +1,7 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import MockAPI from "../../pages/MockMan/MockMan";
+import Notes from "../../pages/Notes/Notes";
 import {
   Home,
   Login,
@@ -15,23 +16,46 @@ import Navbar from "../Navbar/Navbar";
 import "../page-layout.css";
 
 function Main() {
-  const specialPages = ["/", "/login", "/signup", "page-not-found", "/archive"];
+  const specialPages = ["/", "/login", "/signup", "page-not-found"];
+  const location = useLocation();
   return (
     <div className="flex-row">
-      <Navbar />
+      {!specialPages.includes(location.pathname) && <Navbar />}
       <div className="page-main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/trash" element={<Trash />} />
-          <Route path="/archive" element={<Archive />} />
           <Route
             path="/profile"
             element={
               <PrivateRoute>
                 <Profile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/trash"
+            element={
+              <PrivateRoute>
+                <Trash />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/archive"
+            element={
+              <PrivateRoute>
+                <Archive />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/notes"
+            element={
+              <PrivateRoute>
+                <Notes />
               </PrivateRoute>
             }
           />

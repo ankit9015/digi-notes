@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "../../utils/icons/icons";
 
 import "../pages.css";
 import { useAuth } from "../../context/AuthContext/AuthContext";
@@ -37,8 +36,6 @@ function Login() {
     }
     loginHandler({ email, password });
   };
-
-  // const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
@@ -87,20 +84,20 @@ function Login() {
                 Forgot your Password?
               </Link>
               <button
-                className="button-primary button  text-md text-center"
+                className="button-primary button text-md text-center"
                 onClick={() => loginAccount(loginForm)}
               >
                 Login
               </button>
               <button
-                className="button-outline-secondary button  text-md text-center"
+                className="button-outline-secondary button text-md text-center"
                 onClick={() => loginAccount(guestUser)}
               >
                 Login as Guest
               </button>
 
               <Link
-                className="text-center text-lg button link-btn button-secondary"
+                className="text-center text-md button link-btn button-outline-primary"
                 to="../Signup"
               >
                 Create new account

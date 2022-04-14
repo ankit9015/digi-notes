@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext/AuthContext";
 import "./navbar.css";
 
 function Navbar() {
@@ -7,14 +8,16 @@ function Navbar() {
     color: isActive ? "var(--primary-color)" : "",
   });
 
+  const { authState, logOutHandler } = useAuth();
+
   return (
     <div className="flex-column m-l text-md navbar-vertical">
       <NavLink
         className="m-s text-lg no-link"
-        to="/home"
+        to="/notes"
         style={getActiveLinkStyle}
       >
-        Home
+        Notes
       </NavLink>
 
       <NavLink
@@ -48,6 +51,14 @@ function Navbar() {
         MockMan
       </NavLink>
 
+      {authState.isLoggedIn && (
+        <button
+          className="button button-primary text-md"
+          onClick={() => logOutHandler()}
+        >
+          <span>Logout</span>
+        </button>
+      )}
       <button className="button button-primary text-md">
         <span>Create New Note</span>
       </button>
