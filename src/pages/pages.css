@@ -1,0 +1,25 @@
+.password-show {
+  align-self: center;
+  margin-left: auto;
+  z-index: 99;
+}
+
+.password-input {
+  flex: 99 1 auto;
+  width: 100%;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 1px 1px 9px -1px var(--primary-color);
+}
+
+.email-input,
+.password-input {
+  border: none;
+  border-bottom: 2px solid var(--input-border);
+}
+
+.form-card {
+  padding: 10px;
+}

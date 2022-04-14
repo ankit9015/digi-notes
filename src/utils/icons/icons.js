@@ -2,6 +2,7 @@ import { BsPin } from "react-icons/bs";
 import { BiArchiveIn, BiTrashAlt } from "react-icons/bi";
 import { MdOutlineLabel, MdOutlineColorLens } from "react-icons/md";
 import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export {
   BsPin,
@@ -11,4 +12,6 @@ export {
   MdOutlineLabel,
   FaSearch,
   FaFilter,
+  FaEye,
+  FaEyeSlash,
 };
