@@ -1,16 +1,13 @@
 import React from "react";
-import Note from "../../components/Note/Note";
-import SearchBox from "../../components/SearchBox/SearchBox";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="flex-column flex-align-center">
-      <SearchBox />
-
-      <div className="flex-column m-l p-l">
-        <div className="pinned-notes"></div>
-        <Note />
-      </div>
+    <div>
+      <h1 className="H1">Easy Notes App</h1>
+      <Link to="/notes" className="button button-primary text-md m-l link-btn">
+        Get Started
+      </Link>
     </div>
   );
 }

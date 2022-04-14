@@ -1,16 +1,21 @@
-import axios from "axios";
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "../../utils/icons/icons";
+import EmailInput from "../../components/EmailInput/EmailInput";
+import PasswordInput from "../../components/PasswordInput/PasswordInput";
+import { useAuth } from "../../context/AuthContext/AuthContext";
 
 import "../pages.css";
 
 function Signup() {
   const [signupForm, setSignupForm] = useState({
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     acceptTAndC: false,
   });
+
+  const { signupHandler } = useAuth();
 
   useEffect(() => {
     document.title = "Signup";
@@ -39,88 +44,84 @@ function Signup() {
   };
 
   const createAccount = () => {
-    const { email, password, acceptTAndC } = signupForm;
+    const { firstname, lastname, email, password, acceptTAndC } = signupForm;
     console.log(signupForm);
     if (email !== "" && password !== "" && acceptTAndC) {
-      postSignupBackend({ email: email, password: password });
+      signupHandler({ firstname, lastname, email, password });
     }
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
-    <div>
-      <div className="flex-row flex-center signup-main">
-        <div className="card-vertical form-card card-shadow">
-          <div className="card-body text-md">
-            <h1 className="card-title text-lg m-m font-extrabold text-center">
-              Signup
-            </h1>
-            <div className="form-container ">
-              <label className="flex-column">
-                <span className="text-md socketui-label label-required">
-                  Email:
-                </span>
-                <input
-                  className="socketui-input email-input text-md"
-                  type="email"
-                  name="email"
-                  placeholder="xyz@abc.com"
-                  required
-                  value={signupForm.email}
-                  onChange={(e) => updateSignupForm(e)}
-                />
-              </label>
-              <label className="flex-column">
-                <span className="text-md socketui-label label-required">
-                  Password:
-                </span>
-                <div className="flex-row input-border">
-                  <input
-                    className="socketui-input password-input text-md"
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="******"
-                    required
-                    value={signupForm.password}
-                    onChange={(e) => updateSignupForm(e)}
-                  ></input>
-                  <span
-                    className="text-blue password-show"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                  >
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                  </span>
-                </div>
-              </label>
+    <div className="flex-row flex-center signup-main">
+      <div className="card-vertical form-card card-shadow">
+        <div className="card-body text-md">
+          <h1 className="card-title text-lg m-m font-extrabold text-center">
+            Signup
+          </h1>
+          <div className="form-container ">
+            <label className="flex-column">
+              <span className="text-md socketui-label label-required">
+                Firstname:
+              </span>
+              <input
+                className="socketui-input email-input text-md"
+                type="text"
+                name="firstname"
+                placeholder="Ankit"
+                required
+                value={signupForm.firstname}
+                onChange={(e) => updateSignupForm(e)}
+              />
+            </label>
+            <label className="flex-column">
+              <span className="text-md socketui-label label-required">
+                Lastname:
+              </span>
+              <input
+                className="socketui-input email-input text-md"
+                type="text"
+                name="lastname"
+                placeholder="Joshi"
+                required
+                value={signupForm.lastname}
+                onChange={(e) => updateSignupForm(e)}
+              />
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="acceptTAndC"
-                  value={signupForm.acceptTAndC}
-                  onChange={(e) => updateSignupForm(e)}
-                />
-                <span className="text-md">
-                  I accept all the Terms and Conditions
-                </span>
-              </label>
+            <EmailInput
+              value={signupForm.email}
+              onChange={(e) => updateSignupForm(e)}
+            />
+            <PasswordInput
+              value={signupForm.password}
+              onChange={(e) => updateSignupForm(e)}
+            />
 
-              <Link
-                to=""
-                className="button-primary button link-btn text-md text-center"
-                onClick={() => createAccount()}
-              >
-                Create new account
-              </Link>
+            <label>
+              <input
+                type="checkbox"
+                name="acceptTAndC"
+                checked={signupForm.acceptTAndC}
+                onChange={(e) => updateSignupForm(e)}
+              />
+              <span className="text-md">
+                I accept all the Terms and Conditions
+              </span>
+            </label>
 
-              <Link
-                className="text-center text-md button link-btn button-outline-secondary"
-                to="../Login"
-              >
-                Already have an account
-              </Link>
-            </div>
+            <button
+              className="button-primary button text-md text-center"
+              onClick={() => createAccount()}
+            >
+              Create new account
+            </button>
+
+            <Link
+              className="text-center text-md button link-btn button-outline-secondary"
+              to="../Login"
+            >
+              Already have an account
+            </Link>
           </div>
         </div>
       </div>

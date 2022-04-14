@@ -22,4 +22,5 @@
 
 .form-card {
   padding: 10px;
+  max-width: 45rem;
 }
