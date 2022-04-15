@@ -41,12 +41,18 @@ function Note() {
             className="note-title p-xs"
             type="text"
             placeholder="Title of the note"
+            value={noteData.title}
+            onChange={(e) =>
+              setNoteData({ ...noteData, title: e.target.value })
+            }
             rows="1"
           />
           <textarea
             className="note-body p-xs"
             type="text"
             placeholder="Body of the note"
+            value={noteData.body}
+            onChange={(e) => setNoteData({ ...noteData, body: e.target.value })}
           />
         </div>
         <div className="tags-list m-xs">
