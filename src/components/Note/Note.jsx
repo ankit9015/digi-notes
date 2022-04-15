@@ -16,13 +16,20 @@ function Note() {
     title: "",
     body: "",
     isPinned: false,
-    tags: ["home", "chacha"],
+    tags: ["home", "fruits"],
     bgColor: "#ffffff",
     createdAt: new Date().toLocaleDateString(),
   };
 
   const [noteData, setNoteData] = useState(defaultState);
   console.log(noteData);
+
+  const removetag = (_item) => {
+    setNoteData({
+      ...noteData,
+      tags: noteData.tags.filter((item) => item !== _item),
+    });
+  };
 
   return (
     <div className="note " style={{ backgroundColor: `${noteData.bgColor}` }}>
@@ -59,7 +66,7 @@ function Note() {
           {noteData.tags.map((item, index) => (
             <span key={index} className="note-tags text-md">
               {item}
-              <button className="icon-button">
+              <button className="icon-button" onClick={() => removetag(item)}>
                 <MdClose aria-hidden="true" />
               </button>
             </span>
