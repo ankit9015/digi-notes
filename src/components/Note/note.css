@@ -1,31 +1,105 @@
+html {
+  --red-card: #e26f6f;
+  --blue-card: #716fe2;
+  --green-card: #62936c;
+  --orange-card: #f4cb71;
+}
+
+.redCard {
+  background-color: var(--red-card);
+}
+
+.blueCard {
+  background-color: var(--blue-card);
+}
+
+.greenCard {
+  background-color: var(--green-card);
+}
+
+.orangeCard {
+  background-color: var(--orange-card);
+}
+
 .note {
-  padding: 1rem;
+  padding: 10px;
   border: 2px solid var(--black);
-  width: 70rem;
+  border-radius: 5px;
+  width: 50rem;
   gap: 5px;
+  height: min-content;
 }
 
 .note-content {
   display: inherit;
   gap: 5px;
+  height: max-content;
+  align-items: center;
+  flex-basis: 100%;
 }
 
-.note-content * {
+.note-body,
+.note-title {
   border: none;
   background-color: var(--gray);
+  width: 95%;
+}
+
+.note-body {
+  flex: 99;
+}
+
+.note-title {
+  flex: 0;
+}
+
+.icon-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: inherit;
 }
 
 .note-pin {
-  z-index: 99;
-  margin: 5px 5px 5px auto;
+  margin: 5px 5px 0 auto;
+}
+
+.note-tags {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border: 2px solid var(--dark-gray);
+  border-radius: 2rem;
+  padding-left: 5px;
+  margin: 2px;
+  background-color: var(--gray);
 }
 
 .note-footer {
   padding: 5px;
+  flex-wrap: nowrap;
 }
 
 .note-buttons {
   margin-left: auto;
   display: inherit;
   gap: 5px;
+}
+
+.note-date {
+  flex-shrink: 0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 3rem;
+  left: -5rem;
+  background-color: var(--shadow-gray);
+  padding: 2px;
+  margin-right: 5px;
+  border: 2px solid var(--black);
+}
+
+.dropdown-container {
+  position: relative;
 }

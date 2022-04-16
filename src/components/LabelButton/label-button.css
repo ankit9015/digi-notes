@@ -1,0 +1,14 @@
+.label-input {
+  border: 2px solid var(--dark-gray);
+  width: 7rem;
+}
+
+.add-label {
+  gap: 5px;
+  margin: 5px;
+}
+
+.add-label button {
+  width: max-content;
+  border-color: var(--black);
+}

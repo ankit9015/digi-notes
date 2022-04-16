@@ -1,0 +1,13 @@
+.color-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.color-dropdown {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+}
