@@ -7,12 +7,13 @@ import {
   useReducer,
 } from "react";
 import addNoteService from "../../service/Notes/addNoteService";
-import deleteNoteService from "../../service/Notes/deleteNotesService";
+
 import getNotesService from "../../service/Notes/getNotesService";
 import {
   updateNotePinService,
   updateNoteService,
 } from "../../service/Notes/updateNoteService";
+import deleteNotesService from "../../service/Notes/deleteNotesService";
 
 import { useAuth } from "../AuthContext/AuthContext";
 import { defaultNotesState, notesReducer } from "./notesReducer";
@@ -79,6 +80,17 @@ const NotesProvider = ({ children }) => {
       setNotesList(notesFromServer);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const deleteNote = async (currentNote) => {
+    try {
+      const response = deleteNoteService(currentNote, authState.authToken);
+      setNotesList((await response).data.notes);
+      trash = [...trash, currentNote];
+      localStorage.setItem("TRASH", JSON.stringify(trash));
+    } catch (error) {
+      console.log(error);
     }
   };
 
