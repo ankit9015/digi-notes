@@ -1,13 +1,12 @@
 import { useState } from "react";
 import {
-  MdOutlineColorLens,
   BiArchiveIn,
   BiTrashAlt,
   BsPin,
   BsPinFill,
-  MdOutlineLabel,
   MdClose,
 } from "../../utils/icons/icons";
+import ColorButton from "../ColorButton/ColorButton";
 import LabelButton from "../LabelButton/LabelButton";
 import "./note.css";
 
@@ -17,7 +16,7 @@ function Note() {
     body: "",
     isPinned: false,
     tags: ["home", "fruits"],
-    bgColor: "#ffffff",
+    cardColor: "",
     createdAt: new Date().toLocaleDateString(),
   };
 
@@ -32,7 +31,7 @@ function Note() {
   };
 
   return (
-    <div className="note " style={{ backgroundColor: `${noteData.bgColor}` }}>
+    <div className={`note ${noteData.cardColor}`}>
       <div className="flex-column">
         <button
           className="note-pin text-lg icon-button"
@@ -59,7 +58,9 @@ function Note() {
             type="text"
             placeholder="Body of the note"
             value={noteData.body}
-            onChange={(e) => setNoteData({ ...noteData, body: e.target.value })}
+            onChange={(e) =>
+              setNoteData({ ...noteData, body: e.target.value }, 5000)
+            }
           />
         </div>
         <div className="tags-list m-xs">
@@ -76,19 +77,7 @@ function Note() {
       <div className="note-footer flex-row text-lg">
         <div className="note-date">Created at: {noteData.createdAt}</div>
         <div className="note-buttons">
-          <span>
-            <input
-              type="color"
-              value={noteData.bgColor}
-              className="text-xs border-box"
-              onChange={(e) => {
-                e.preventDefault();
-                setNoteData({ ...noteData, bgColor: e.target.value });
-              }}
-            />
-            {/* <MdOutlineColorLens className="text-lg" /> */}
-          </span>
-
+          <ColorButton noteData={noteData} setNoteData={setNoteData} />
           <BiArchiveIn />
           <BiTrashAlt />
           <LabelButton noteData={noteData} setNoteData={setNoteData} />

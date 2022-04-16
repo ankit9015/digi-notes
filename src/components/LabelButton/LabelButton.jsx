@@ -8,7 +8,7 @@ function LabelButton({ noteData, setNoteData }) {
   const [showDropdown, setShowDropdown] = useState(false);
   console.log(noteData);
   return (
-    <span className="text-md label-button-container">
+    <span className="text-md dropdown-container">
       <button
         className="text-lg icon-button"
         onClick={(e) => {
@@ -19,16 +19,17 @@ function LabelButton({ noteData, setNoteData }) {
         <MdOutlineLabel />
       </button>
 
-      <div className={`label-dropdown ${showDropdown ? "" : "display-none"}`}>
-        <div className="add-label flex-row gap-5">
+      <div className={`dropdown ${showDropdown ? "" : "display-none"}`}>
+        <div className="add-label text-md  flex-row gap-5">
           <input
-            className="label-input"
+            className="label-input text-md"
             placeholder="tag"
             type="text"
             value={newLabel}
             onChange={(e) => setNewLabel(e.target.value)}
           />
           <button
+            className="text-md"
             onClick={(e) => {
               e.preventDefault();
               setNoteData({

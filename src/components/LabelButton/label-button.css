@@ -1,18 +1,6 @@
-.label-button-container {
-  position: relative;
-}
-
-.label-dropdown {
-  z-index: 99;
-  position: absolute;
-  left: 3rem;
-  top: 3rem;
-  background-color: var(--shadow-gray);
-  padding: 5px;
-}
-
 .label-input {
   border: 2px solid var(--dark-gray);
+  width: 7rem;
 }
 
 .add-label {
@@ -22,4 +10,5 @@
 
 .add-label button {
   width: max-content;
+  border-color: var(--black);
 }
