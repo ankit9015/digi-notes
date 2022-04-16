@@ -43,7 +43,10 @@ function NoteCard({ noteDetails, className }) {
         <div className="note-date">Created at: {noteDetails.createdAt}</div>
         <div className="note-buttons">
           <BiArchiveIn />
-          <button className=" icon-button" onClick={() => {}}>
+          <button
+            className=" icon-button"
+            onClick={() => deleteNote(noteDetails)}
+          >
             <BiTrashAlt />
           </button>
         </div>
