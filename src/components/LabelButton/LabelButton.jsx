@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNotes } from "../../context/NotesContext/NotesContext";
 
 import { MdOutlineLabel } from "../../utils/icons/icons";
 import "./label-button.css";
 
-function LabelButton({ noteData, setNoteData }) {
+function LabelButton() {
   const [newLabel, setNewLabel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  console.log(noteData);
+  const { notesState, notesDispatch, noteLabels, setNoteLabel } = useNotes();
+  // const isInTags = (label) => notesState.tags.includes(label);
+
   return (
     <span className="text-md dropdown-container">
       <button
@@ -32,18 +35,26 @@ function LabelButton({ noteData, setNoteData }) {
             className="text-md"
             onClick={(e) => {
               e.preventDefault();
-              setNoteData({
-                ...noteData,
-                tags:
-                  newLabel !== ""
-                    ? [...noteData.tags, newLabel]
-                    : [...noteData.tags],
-              });
+              notesDispatch({ type: "UPDATE-TAGS", payload: newLabel });
+              setNewLabel("");
             }}
           >
             Add Label
           </button>
         </div>
+        <ul>
+          {noteLabels.map((label) => (
+            <label key={label}>
+              <input
+                type="checkbox"
+                name={label}
+                // checked={isInTags(label)}
+                // onClick={labelCheckToggle(label)}
+              />
+              {label}
+            </label>
+          ))}
+        </ul>
       </div>
     </span>
   );

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNotes } from "../../context/NotesContext/NotesContext";
 import { MdOutlineColorLens } from "../../utils/icons/icons";
 import "./color-button.css";
 
-function ColorButton({ noteData, setNoteData }) {
+function ColorButton() {
   const [showDropdown, setShowDropdown] = useState(false);
   const cardColors = ["redCard", "blueCard", "orangeCard", "greenCard"];
+  const { notesDispatch } = useNotes();
 
   return (
     <span className="color-picker dropdown-container">
@@ -23,7 +25,7 @@ function ColorButton({ noteData, setNoteData }) {
             <span
               key={color}
               onClick={() => {
-                setNoteData({ ...noteData, cardColor: color });
+                notesDispatch({ type: "UPDATE-COLOR", payload: color });
               }}
             >
               <div className={`color-circle ${color}`}></div>
