@@ -17,7 +17,6 @@ function ModalNoteEditor({ currentNote, setModalDisplay }) {
   const { updateNote, defaultNotesState } = useNotes();
 
   const [updatedNote, setUpdatedNote] = useState(currentNote);
-  console.log(updatedNote, "inside");
 
   return (
     <div className={`modal-note-editor note ${updatedNote.cardColor}`}>

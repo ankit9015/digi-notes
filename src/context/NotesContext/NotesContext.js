@@ -89,7 +89,7 @@ const NotesProvider = ({ children }) => {
       trash = [...trash, currentNote];
       localStorage.setItem("TRASH", JSON.stringify(trash));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

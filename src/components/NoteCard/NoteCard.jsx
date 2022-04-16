@@ -19,7 +19,6 @@ function NoteCard({ noteDetails, className, id }) {
   const { notesList, updateNotePinStatus, notesDispatch, deleteNote } =
     useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
-  console.log(modalDisplay);
   return (
     <div className={`note-card text-md ${noteDetails.cardColor} ${className}`}>
       {modalDisplay && (

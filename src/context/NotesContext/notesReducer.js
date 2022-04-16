@@ -26,7 +26,6 @@ const notesReducer = (state, action) => {
       return { ...defaultNotesState };
     }
     case "UPDATE-PIN":
-      console.log("inside");
       return { ...state, isPinned: !state.isPinned };
     default:
       return state;

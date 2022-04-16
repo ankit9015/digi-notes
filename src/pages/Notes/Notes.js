@@ -11,7 +11,6 @@ function Notes() {
   const { notesList } = useNotes();
   const [showNotesEditor, setShowNotesEditor] = useState(false);
   const { notesDispatch } = useNotes();
-  notesList.map((item) => console.log(item));
   const pinnedNotes = notesList.filter((item) => item.isPinned);
   const notPinnedNotes = notesList.filter((item) => !item.isPinned);
   return (
