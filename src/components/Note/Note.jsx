@@ -23,6 +23,7 @@ function Note({ className, notesDisplayToggle }) {
             onClick={() => {
               addNote(notesState);
               notesDisplayToggle((prev) => !prev);
+              notesDispatch({ type: "RESET-NOTE", payload: {} });
             }}
           >
             <MdOutlineSave />
