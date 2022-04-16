@@ -3,12 +3,11 @@ const defaultNotesState = {
   description: "",
   isPinned: false,
   tags: [],
-  cardColor: "",
+  cardColor: "whiteCard",
   createdAt: new Date().toLocaleDateString(),
 };
 
 const notesReducer = (state, action) => {
-  console.log("working");
   const { type, payload } = action;
   switch (type) {
     case "UPDATE-TITLE":
@@ -23,6 +22,9 @@ const notesReducer = (state, action) => {
       return { ...state, tags: state.tags.filter((item) => item !== payload) };
     case "UPDATE-NOTE":
       return { ...payload };
+    case "RESET-NOTE": {
+      return { ...defaultNotesState };
+    }
     case "UPDATE-PIN":
       console.log("inside");
       return { ...state, isPinned: !state.isPinned };

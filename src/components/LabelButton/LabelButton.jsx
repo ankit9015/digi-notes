@@ -4,7 +4,7 @@ import { useNotes } from "../../context/NotesContext/NotesContext";
 import { MdOutlineLabel } from "../../utils/icons/icons";
 import "./label-button.css";
 
-function LabelButton() {
+function LabelButton({ setModal, modalState }) {
   const [newLabel, setNewLabel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const { notesState, notesDispatch, noteLabels, setNoteLabel } = useNotes();
@@ -35,7 +35,12 @@ function LabelButton() {
             className="text-md"
             onClick={(e) => {
               e.preventDefault();
-              notesDispatch({ type: "UPDATE-TAGS", payload: newLabel });
+              modalState
+                ? setModal({
+                    ...modalState,
+                    tags: [...modalState.tags, newLabel],
+                  })
+                : notesDispatch({ type: "UPDATE-TAGS", payload: newLabel });
               setNewLabel("");
             }}
           >
