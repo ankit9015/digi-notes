@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   createContext,
   useContext,
@@ -85,7 +84,7 @@ const NotesProvider = ({ children }) => {
 
   const deleteNote = async (currentNote) => {
     try {
-      const response = deleteNoteService(currentNote, authState.authToken);
+      const response = deleteNotesService(currentNote, authState.authToken);
       setNotesList((await response).data.notes);
       trash = [...trash, currentNote];
       localStorage.setItem("TRASH", JSON.stringify(trash));
