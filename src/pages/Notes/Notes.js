@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ModalNoteEditor from "../../components/ModalNoteEditor/ModalNoteEditor";
 import Note from "../../components/Note/Note";
 import NoteCard from "../../components/NoteCard/NoteCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
@@ -10,7 +11,6 @@ function Notes() {
   const { notesList } = useNotes();
   const [showNotesEditor, setShowNotesEditor] = useState(false);
   const { notesDispatch } = useNotes();
-  notesList.map((item) => console.log(item));
   const pinnedNotes = notesList.filter((item) => item.isPinned);
   const notPinnedNotes = notesList.filter((item) => !item.isPinned);
   return (
@@ -21,14 +21,12 @@ function Notes() {
         notesDisplayToggle={setShowNotesEditor}
       />
 
-      {/* <div className="flex-column m-l p-l"> */}
-
       {pinnedNotes.length > 0 && (
         <div className="pinned-notes flex-column">
           <h3 className="H3">Pinned Notes</h3>
           {pinnedNotes.map((item) => (
             <div key={item._id}>
-              <NoteCard noteDetails={item} />
+              <NoteCard id={item.id} noteDetails={item} />
             </div>
           ))}
         </div>

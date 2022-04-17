@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 
 import {
@@ -13,13 +13,25 @@ import {
 
 import "./note-card.css";
 import "../Note/note.css";
+import ModalNoteEditor from "../ModalNoteEditor/ModalNoteEditor";
 
-function NoteCard({ noteDetails, className }) {
-  const { updateNotePinStatus, notesDispatch, deleteNote } = useNotes();
+function NoteCard({ noteDetails, className, id }) {
+  const { notesList, updateNotePinStatus, notesDispatch, deleteNote } =
+    useNotes();
+  const [modalDisplay, setModalDisplay] = useState(false);
   return (
     <div className={`note-card text-md ${noteDetails.cardColor} ${className}`}>
+      {modalDisplay && (
+        <ModalNoteEditor
+          currentNote={noteDetails}
+          setModalDisplay={setModalDisplay}
+        />
+      )}
       <div className="note-card-header">
-        <button className=" icon-button" onClick={() => {}}>
+        <button
+          className=" icon-button"
+          onClick={() => setModalDisplay((prev) => !prev)}
+        >
           <MdEdit />
         </button>
         <button
@@ -30,7 +42,9 @@ function NoteCard({ noteDetails, className }) {
         </button>
       </div>
       <h1>{noteDetails.title}</h1>
-      <p>{noteDetails.descriptions}</p>
+      <div>
+        <p>{noteDetails.description}</p>
+      </div>
       <div className="tags-list m-xs">
         {noteDetails.tags.map((tag) => (
           <span key={tag} className="note-tags text-md">

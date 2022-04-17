@@ -21,6 +21,10 @@ html {
   background-color: var(--orange-card);
 }
 
+.whiteCard {
+  background-color: var(--white);
+}
+
 .note {
   padding: 10px;
   border: 2px solid var(--black);

@@ -3,7 +3,7 @@ import { useNotes } from "../../context/NotesContext/NotesContext";
 import { MdOutlineColorLens } from "../../utils/icons/icons";
 import "./color-button.css";
 
-function ColorButton() {
+function ColorButton({ setModal, modalState }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const cardColors = ["redCard", "blueCard", "orangeCard", "greenCard"];
   const { notesDispatch } = useNotes();
@@ -25,7 +25,9 @@ function ColorButton() {
             <span
               key={color}
               onClick={() => {
-                notesDispatch({ type: "UPDATE-COLOR", payload: color });
+                modalState
+                  ? setModal({ ...modalState, cardColor: color })
+                  : notesDispatch({ type: "UPDATE-COLOR", payload: color });
               }}
             >
               <div className={`color-circle ${color}`}></div>

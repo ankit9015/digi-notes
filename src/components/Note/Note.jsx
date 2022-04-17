@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 import {
   BiArchiveIn,
@@ -24,6 +23,7 @@ function Note({ className, notesDisplayToggle }) {
             onClick={() => {
               addNote(notesState);
               notesDisplayToggle((prev) => !prev);
+              notesDispatch({ type: "RESET-NOTE", payload: {} });
             }}
           >
             <MdOutlineSave />
@@ -54,11 +54,11 @@ function Note({ className, notesDisplayToggle }) {
             className="note-body p-xs"
             type="text"
             placeholder="Body of the note"
-            value={notesState.body}
+            value={notesState.description}
             onChange={(e) =>
               notesDispatch({
                 type: "UPDATE-DESCRIPTION",
-                payload: { description: e.target.value },
+                payload: e.target.value,
               })
             }
           />
@@ -84,7 +84,13 @@ function Note({ className, notesDisplayToggle }) {
         <div className="note-buttons">
           <ColorButton />
           <BiArchiveIn />
-          <BiTrashAlt />
+          <span
+            className="icon-button"
+            onClick={() => notesDispatch({ type: "RESET-NOTE", payload: {} })}
+          >
+            <BiTrashAlt />
+          </span>
+
           <LabelButton />
         </div>
       </div>

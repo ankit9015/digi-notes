@@ -5,7 +5,6 @@ const deleteNoteService = async (currentNote, tokenValue) => {
     const response = await axios.delete(`/api/notes/${currentNote._id}`, {
       headers: { authorization: tokenValue },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
