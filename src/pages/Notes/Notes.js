@@ -26,7 +26,7 @@ function Notes() {
           <h3 className="H3">Pinned Notes</h3>
           {pinnedNotes.map((item) => (
             <div key={item._id}>
-              <NoteCard id={item.id} noteDetails={item} />
+              <NoteCard noteDetails={item} />
             </div>
           ))}
         </div>

@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import {
   FaSearch,
+  FaExclamation,
   FaFilter,
   FaEye,
   FaEyeSlash,
@@ -25,6 +26,7 @@ export {
   MdOutlineSave,
   FaSearch,
   FaFilter,
+  FaExclamation,
   FaTrashRestoreAlt,
   FaEye,
   FaEyeSlash,

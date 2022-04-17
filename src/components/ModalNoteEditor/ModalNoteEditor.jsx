@@ -11,6 +11,7 @@ import {
 import ColorButton from "../ColorButton/ColorButton";
 import LabelButton from "../LabelButton/LabelButton";
 import "../Note/note.css";
+import PriorityButton from "../PriorityButton/PriorityButton";
 import "./modal-note.css";
 
 function ModalNoteEditor({ currentNote, setModalDisplay }) {
@@ -91,6 +92,7 @@ function ModalNoteEditor({ currentNote, setModalDisplay }) {
       <div className="note-footer flex-row text-lg">
         <div className="note-date">Created at: {updatedNote.createdAt}</div>
         <div className="note-buttons">
+          <PriorityButton setModal={setUpdatedNote} modalState={updatedNote} />
           <ColorButton setModal={setUpdatedNote} modalState={updatedNote} />
           <BiArchiveIn />
           <span

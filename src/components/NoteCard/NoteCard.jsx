@@ -31,13 +31,14 @@ function NoteCard(props) {
         />
       )}
       <div className="note-card-header">
+        <span className="priority-info">Priority: {noteDetails.priority}</span>
         <button
           className=" icon-button text-lg"
           onClick={() => setModalDisplay((prev) => !prev)}
         >
           <MdEdit />
         </button>
-        {variant !== "trash" && (
+        {!variant && (
           <button
             className=" icon-button text-lg"
             onClick={() => updateNotePinStatus(noteDetails)}
@@ -46,10 +47,9 @@ function NoteCard(props) {
           </button>
         )}
       </div>
-      <h1>{noteDetails.title}</h1>
-      <div>
-        <p>{noteDetails.description}</p>
-      </div>
+      <p className="text-lg m-xs">{noteDetails.title}</p>
+      <p className="text-lg">{noteDetails.description}</p>
+
       <div className="tags-list m-xs">
         {noteDetails.tags.map((tag) => (
           <span key={tag} className="note-tags text-md">

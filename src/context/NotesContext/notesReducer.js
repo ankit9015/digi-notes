@@ -3,6 +3,7 @@ const defaultNotesState = {
   description: "",
   isPinned: false,
   tags: [],
+  priority: "Low",
   cardColor: "whiteCard",
   createdAt: new Date().toLocaleDateString(),
   isInTrash: false,
@@ -26,6 +27,8 @@ const notesReducer = (state, action) => {
     case "RESET-NOTE": {
       return { ...defaultNotesState };
     }
+    case "UPDATE-PRIORITY":
+      return { ...state, priority: payload };
     case "UPDATE-PIN":
       return { ...state, isPinned: !state.isPinned };
     default:
