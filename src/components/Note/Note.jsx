@@ -1,3 +1,4 @@
+import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 import {
   BiArchiveIn,
@@ -13,6 +14,7 @@ import "./note.css";
 
 function Note({ className, notesDisplayToggle }) {
   const { notesState, notesDispatch, addNote } = useNotes();
+  const { setArchive } = useArchive();
 
   return (
     <div className={`note ${notesState.cardColor} ${className}`}>

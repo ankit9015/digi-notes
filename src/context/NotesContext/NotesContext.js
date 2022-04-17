@@ -27,7 +27,12 @@ const NotesProvider = ({ children }) => {
     defaultNotesState
   );
   const [noteLabels, setNoteLabels] = useState(["Home", "Work"]);
+
   const trash = JSON.parse(localStorage.getItem("TRASH"));
+
+  if (!trash) {
+    localStorage.setItem("TRASH", JSON.stringify([]));
+  }
 
   useEffect(() => {
     if (authState.isLoggedIn) {
@@ -71,8 +76,8 @@ const NotesProvider = ({ children }) => {
 
   const updateNotePinStatus = async (currentNote) => {
     try {
-      const response = await updateNotePinService(
-        currentNote,
+      const response = await updateNoteService(
+        { ...currentNote, isPinned: !currentNote.isPinned },
         authState.authToken
       );
       const notesFromServer = response.data.notes;
@@ -84,10 +89,12 @@ const NotesProvider = ({ children }) => {
 
   const deleteNote = async (currentNote) => {
     try {
-      const response = deleteNotesService(currentNote, authState.authToken);
-      setNotesList((await response).data.notes);
-      trash = [...trash, currentNote];
-      localStorage.setItem("TRASH", JSON.stringify(trash));
+      const response = await deleteNotesService(
+        currentNote,
+        authState.authToken
+      );
+      setNotesList(response.data.notes);
+      localStorage.setItem("TRASH", JSON.stringify([...trash, currentNote]));
     } catch (error) {
       console.error(error);
     }
@@ -96,11 +103,13 @@ const NotesProvider = ({ children }) => {
   return (
     <NotesContext.Provider
       value={{
+        trash,
         notesState,
         defaultNotesState,
         notesList,
         noteLabels,
         setNoteLabels,
+        setNotesList,
         notesDispatch,
         addNote,
         updateNote,
