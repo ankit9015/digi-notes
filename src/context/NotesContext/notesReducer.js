@@ -5,6 +5,7 @@ const defaultNotesState = {
   tags: [],
   cardColor: "whiteCard",
   createdAt: new Date().toLocaleDateString(),
+  isInTrash: false,
 };
 
 const notesReducer = (state, action) => {

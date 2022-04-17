@@ -10,7 +10,7 @@ const ArchiveContext = createContext({});
 
 const ArchiveProvider = ({ children }) => {
   const [archive, setArchive] = useState([]);
-  const { notesState, setNotesState, setNotesList, trash } = useNotes();
+  const { setNotesList, trash } = useNotes();
   const { authState } = useAuth();
 
   useEffect(() => {

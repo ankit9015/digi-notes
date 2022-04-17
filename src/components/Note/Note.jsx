@@ -85,7 +85,10 @@ function Note({ className, notesDisplayToggle }) {
         <div className="note-date">Created at: {notesState.createdAt}</div>
         <div className="note-buttons">
           <ColorButton />
-          <BiArchiveIn />
+          <span>
+            <BiArchiveIn />
+          </span>
+
           <span
             className="icon-button"
             onClick={() => notesDispatch({ type: "RESET-NOTE", payload: {} })}
