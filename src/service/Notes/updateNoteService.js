@@ -18,3 +18,4 @@ const updateNoteService = async (currentNote, tokenValue) => {
 };
 
 export { updateNoteService };
+

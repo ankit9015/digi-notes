@@ -14,46 +14,65 @@ const ArchiveProvider = ({ children }) => {
   const { authState } = useAuth();
 
   useEffect(() => {
-    if (authState.isLoggedIn) {
-      (async () => {
-        const response = await getArchiveService(authState.authToken);
-        if (response.data !== undefined) {
-          setArchive(response.data.archives);
-        }
-      })();
-    } else {
-      setArchive([]);
+    try {
+      if (authState.isLoggedIn) {
+        (async () => {
+          const response = await getArchiveService(authState.authToken);
+          if (response.data !== undefined) {
+            setArchive(response.data.archives);
+          }
+        })();
+      } else {
+        setArchive([]);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
   const addToArchive = async (currentNote) => {
-    const response = await addArchiveService(currentNote, authState.authToken);
-
-    if (response.data !== undefined) {
-      setArchive(response.data.archives);
-      setNotesList(response.data.notes);
+    try {
+      const response = await addArchiveService(
+        currentNote,
+        authState.authToken
+      );
+      console.log(response);
+      if (response.data !== undefined) {
+        setArchive(response.data.archives);
+        setNotesList(response.data.notes);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const restoreFromArchive = async (currentNote) => {
-    const response = await restoreFromArchivesService(
-      currentNote,
-      authState.authToken
-    );
-    if (response.data !== undefined) {
-      setArchive(response.data.archives);
-      setNotesList(response.data.notes);
+    try {
+      const response = await restoreFromArchivesService(
+        currentNote,
+        authState.authToken
+      );
+      if (response.data !== undefined) {
+        setArchive(response.data.archives);
+        setNotesList(response.data.notes);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const deleteFromArchive = async (currentNote) => {
-    const response = await deleteFromArchivesService(
-      currentNote,
-      authState.authToken
-    );
-    if (response.data !== undefined) {
-      setArchive(response.data.archives);
-      localStorage.setItem("TRASH", JSON.stringify([...trash, currentNote]));
+    try {
+      const response = await deleteFromArchivesService(
+        currentNote,
+        authState.authToken
+      );
+      if (response.data !== undefined) {
+        setArchive(response.data.archives);
+        localStorage.setItem("TRASH", JSON.stringify([...trash, currentNote]));
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
