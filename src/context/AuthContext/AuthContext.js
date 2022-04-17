@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
 
   const logOutHandler = () => {
     localStorage.removeItem("AUTH-TOKEN");
+    localStorage.removeItem("TRASH");
     setAuthState({ isLoggedIn: false, authToken: undefined });
     navigate("/");
   };

@@ -30,7 +30,7 @@ const NotesProvider = ({ children }) => {
 
   const trash = JSON.parse(localStorage.getItem("TRASH"));
 
-  if (!trash) {
+  if (authState.isLoggedIn && !trash) {
     localStorage.setItem("TRASH", JSON.stringify([]));
   }
 

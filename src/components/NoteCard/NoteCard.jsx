@@ -9,6 +9,7 @@ import {
   BsPinFill,
   MdClose,
   MdEdit,
+  FaTrashRestoreAlt,
 } from "../../utils/icons/icons";
 
 import "./note-card.css";
@@ -18,16 +19,12 @@ import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
 function NoteCard(props) {
   const { variant, noteDetails } = props;
-  const { notesList, updateNotePinStatus, notesDispatch, deleteNote } =
-    useNotes();
+
+  const { updateNotePinStatus, addNote, deleteNote, trash } = useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
-  const {
-    archive,
-    setArchive,
-    addToArchive,
-    restoreFromArchive,
-    deleteFromArchive,
-  } = useArchive();
+  const { addToArchive, restoreFromArchive, deleteFromArchive } = useArchive();
+
+
   return (
     <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
@@ -43,12 +40,16 @@ function NoteCard(props) {
         >
           <MdEdit />
         </button>
-        <button
-          className=" icon-button text-lg"
-          onClick={() => updateNotePinStatus(noteDetails)}
-        >
-          {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
-        </button>
+
+        {variant !== "trash" && (
+          <button
+            className=" icon-button text-lg"
+            onClick={() => updateNotePinStatus(noteDetails)}
+          >
+            {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
+          </button>
+        )}
+
       </div>
       <h1>{noteDetails.title}</h1>
       <div>
@@ -65,36 +66,56 @@ function NoteCard(props) {
       <div className="note-card-footer flex-row">
         <div className="note-date">Created at: {noteDetails.createdAt}</div>
         <div className="note-buttons">
-          {variant === "archive" ? (
-            <>
-              <span
-                className=" icon-button text-lg"
-                onClick={() => restoreFromArchive(noteDetails)}
-              >
-                <BiArchiveOut />
-              </span>
-              <button
-                className=" icon-button text-lg"
-                onClick={() => deleteFromArchive(noteDetails)}
-              >
-                <BiTrashAlt />
-              </button>
-            </>
+
+          {variant !== "trash" ? (
+            variant === "archive" ? (
+              <>
+                <button
+                  className=" icon-button text-lg"
+                  onClick={() => restoreFromArchive(noteDetails)}
+                >
+                  <BiArchiveOut />
+                </button>
+                <button
+                  className=" icon-button text-lg"
+                  onClick={() => {
+                    deleteFromArchive(noteDetails);
+                  }}
+                >
+                  <BiTrashAlt />
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className=" icon-button text-lg"
+                  onClick={() => addToArchive(noteDetails)}
+                >
+                  <BiArchiveIn />
+                </button>
+                <button
+                  className=" icon-button text-lg"
+                  onClick={() => deleteNote(noteDetails)}
+                >
+                  <BiTrashAlt />
+                </button>
+              </>
+            )
           ) : (
-            <>
-              <span
-                className=" icon-button text-lg"
-                onClick={() => addToArchive(noteDetails)}
-              >
-                <BiArchiveIn />
-              </span>
-              <button
-                className=" icon-button text-lg"
-                onClick={() => deleteNote(noteDetails)}
-              >
-                <BiTrashAlt />
-              </button>
-            </>
+            <button
+              className=" icon-button text-lg"
+              onClick={() => {
+                addNote(noteDetails);
+                localStorage.setItem(
+                  "TRASH",
+                  JSON.stringify(
+                    trash.filter((item) => item._id !== noteDetails._id)
+                  )
+                );
+              }}
+            >
+              <FaTrashRestoreAlt />
+            </button>
           )}
         </div>
       </div>

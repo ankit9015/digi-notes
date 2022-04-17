@@ -14,6 +14,7 @@ import "./note.css";
 
 function Note({ className, notesDisplayToggle }) {
   const { notesState, notesDispatch, addNote } = useNotes();
+  const { setArchive } = useArchive();
 
   return (
     <div className={`note ${notesState.cardColor} ${className}`}>
@@ -84,7 +85,10 @@ function Note({ className, notesDisplayToggle }) {
         <div className="note-date">Created at: {notesState.createdAt}</div>
         <div className="note-buttons">
           <ColorButton />
-          <BiArchiveIn />
+          <span>
+            <BiArchiveIn />
+          </span>
+
           <span
             className="icon-button"
             onClick={() => notesDispatch({ type: "RESET-NOTE" })}

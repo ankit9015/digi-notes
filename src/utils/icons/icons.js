@@ -7,8 +7,13 @@ import {
   MdOutlineSave,
   MdEdit,
 } from "react-icons/md";
-import { FaSearch, FaFilter } from "react-icons/fa";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaSearch,
+  FaFilter,
+  FaEye,
+  FaEyeSlash,
+  FaTrashRestoreAlt,
+} from "react-icons/fa";
 
 export {
   BsPin,
@@ -20,6 +25,7 @@ export {
   MdOutlineSave,
   FaSearch,
   FaFilter,
+  FaTrashRestoreAlt,
   FaEye,
   FaEyeSlash,
   BsPinFill,
