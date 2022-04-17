@@ -14,7 +14,6 @@ const updateNoteService = async (currentNote, tokenValue) => {
     return response;
   } catch (error) {
     console.log(error);
-    error;
   }
 };
 
@@ -32,7 +31,6 @@ const updateNotePinService = async (currentNote, tokenValue) => {
     return response;
   } catch (error) {
     console.log(error);
-    error;
   }
 };
 
