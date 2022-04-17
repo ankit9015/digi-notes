@@ -25,14 +25,14 @@ function Note({ className, notesDisplayToggle }) {
             onClick={() => {
               addNote(notesState);
               notesDisplayToggle((prev) => !prev);
-              notesDispatch({ type: "RESET-NOTE", payload: {} });
+              notesDispatch({ type: "RESET-NOTE" });
             }}
           >
             <MdOutlineSave />
           </button>
           <button
             className="text-lg icon-button"
-            onClick={() => notesDispatch({ type: "UPDATE-PIN", payload: {} })}
+            onClick={() => notesDispatch({ type: "UPDATE-PIN" })}
           >
             {notesState.isPinned ? <BsPinFill /> : <BsPin />}
           </button>
@@ -91,7 +91,7 @@ function Note({ className, notesDisplayToggle }) {
 
           <span
             className="icon-button"
-            onClick={() => notesDispatch({ type: "RESET-NOTE", payload: {} })}
+            onClick={() => notesDispatch({ type: "RESET-NOTE" })}
           >
             <BiTrashAlt />
           </span>

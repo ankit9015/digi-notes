@@ -19,9 +19,12 @@ import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
 function NoteCard(props) {
   const { variant, noteDetails } = props;
+
   const { updateNotePinStatus, addNote, deleteNote, trash } = useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
   const { addToArchive, restoreFromArchive, deleteFromArchive } = useArchive();
+
+
   return (
     <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
@@ -37,6 +40,7 @@ function NoteCard(props) {
         >
           <MdEdit />
         </button>
+
         {variant !== "trash" && (
           <button
             className=" icon-button text-lg"
@@ -45,6 +49,7 @@ function NoteCard(props) {
             {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
           </button>
         )}
+
       </div>
       <h1>{noteDetails.title}</h1>
       <div>
@@ -61,6 +66,7 @@ function NoteCard(props) {
       <div className="note-card-footer flex-row">
         <div className="note-date">Created at: {noteDetails.createdAt}</div>
         <div className="note-buttons">
+
           {variant !== "trash" ? (
             variant === "archive" ? (
               <>
