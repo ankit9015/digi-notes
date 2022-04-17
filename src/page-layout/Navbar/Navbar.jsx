@@ -27,6 +27,13 @@ function Navbar() {
       >
         Archive
       </NavLink>
+      <NavLink
+        className="m-s text-lg no-link"
+        to="/label"
+        style={getActiveLinkStyle}
+      >
+        Label
+      </NavLink>
 
       <NavLink
         className="m-s text-lg no-link"

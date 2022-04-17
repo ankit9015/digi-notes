@@ -10,6 +10,7 @@ import {
 } from "../../utils/icons/icons";
 import ColorButton from "../ColorButton/ColorButton";
 import LabelButton from "../LabelButton/LabelButton";
+import PriorityButton from "../PriorityButton/PriorityButton";
 import "./note.css";
 
 function Note({ className, notesDisplayToggle }) {
@@ -84,6 +85,7 @@ function Note({ className, notesDisplayToggle }) {
       <div className="note-footer flex-row text-lg">
         <div className="note-date">Created at: {notesState.createdAt}</div>
         <div className="note-buttons">
+          <PriorityButton />
           <ColorButton />
           <span>
             <BiArchiveIn />

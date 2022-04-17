@@ -7,8 +7,13 @@ import "./label-button.css";
 function LabelButton({ setModal, modalState }) {
   const [newLabel, setNewLabel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const { notesState, notesDispatch, noteLabels, setNoteLabel } = useNotes();
-  // const isInTags = (label) => notesState.tags.includes(label);
+  const { notesState, notesDispatch, uniqueLabels } = useNotes();
+  const isInTags = (label) => notesState.tags.includes(label);
+  const labelCheckToggle = (label) => {
+    isInTags(label)
+      ? notesDispatch({ type: "REMOVE-TAG", payload: label })
+      : notesDispatch({ type: "UPDATE-TAGS", payload: label });
+  };
 
   return (
     <span className="text-md dropdown-container">
@@ -35,26 +40,29 @@ function LabelButton({ setModal, modalState }) {
             className="text-md"
             onClick={(e) => {
               e.preventDefault();
-              modalState
-                ? setModal({
-                    ...modalState,
-                    tags: [...modalState.tags, newLabel],
-                  })
-                : notesDispatch({ type: "UPDATE-TAGS", payload: newLabel });
-              setNewLabel("");
+              if (!isInTags(newLabel)) {
+                modalState
+                  ? setModal({
+                      ...modalState,
+                      tags: [...modalState.tags, newLabel],
+                    })
+                  : notesDispatch({ type: "UPDATE-TAGS", payload: newLabel });
+                setNewLabel("");
+              }
             }}
           >
             Add Label
           </button>
         </div>
         <ul>
-          {noteLabels.map((label) => (
+          {uniqueLabels.map((label) => (
             <label key={label}>
               <input
                 type="checkbox"
                 name={label}
-                // checked={isInTags(label)}
-                // onClick={labelCheckToggle(label)}
+                value={label}
+                checked={isInTags(label)}
+                onChange={() => labelCheckToggle(label)}
               />
               {label}
             </label>

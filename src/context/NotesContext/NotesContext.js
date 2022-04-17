@@ -26,7 +26,6 @@ const NotesProvider = ({ children }) => {
     notesReducer,
     defaultNotesState
   );
-  const [noteLabels, setNoteLabels] = useState(["Home", "Work"]);
 
   const trash = JSON.parse(localStorage.getItem("TRASH"));
 
@@ -100,15 +99,22 @@ const NotesProvider = ({ children }) => {
     }
   };
 
+  const uniqueLabels = notesList.reduce(
+    (allLabels, initialLabel) => [
+      ...allLabels,
+      ...initialLabel.tags.filter((tag) => !allLabels.includes(tag)),
+    ],
+    []
+  );
+
   return (
     <NotesContext.Provider
       value={{
+        uniqueLabels,
         trash,
         notesState,
         defaultNotesState,
         notesList,
-        noteLabels,
-        setNoteLabels,
         setNotesList,
         notesDispatch,
         addNote,

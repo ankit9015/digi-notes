@@ -10,6 +10,7 @@ import {
   Archive,
   Profile,
   PageNotFound,
+  Label,
 } from "../../pages/pages";
 import PrivateRoute from "../../Routes/PrivateRoute";
 import Navbar from "../Navbar/Navbar";
@@ -26,6 +27,7 @@ function Main() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/label" element={<Label />} />
           <Route
             path="/profile"
             element={
