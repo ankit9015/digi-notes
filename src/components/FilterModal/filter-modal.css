@@ -1,0 +1,13 @@
+.filter-modal {
+  width: 60%;
+  background-color: var(--white);
+  padding: 5px;
+  z-index: 99;
+  position: relative;
+  border: 2px solid;
+  top: 5px;
+}
+
+.filter-modal .clear-button {
+  margin: 5px auto 5px 5px;
+}

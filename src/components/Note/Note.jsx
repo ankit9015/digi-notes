@@ -83,7 +83,9 @@ function Note({ className, notesDisplayToggle }) {
         </div>
       </div>
       <div className="note-footer flex-row text-lg">
-        <div className="note-date">Created at: {notesState.createdAt}</div>
+        <div className="note-date">
+          Created at: {new Date(notesState.createdAt).toLocaleDateString()}
+        </div>
         <div className="note-buttons">
           <PriorityButton />
           <ColorButton />
