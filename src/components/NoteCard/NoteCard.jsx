@@ -3,24 +3,33 @@ import { useNotes } from "../../context/NotesContext/NotesContext";
 
 import {
   BiArchiveIn,
+  BiArchiveOut,
   BiTrashAlt,
   BsPin,
   BsPinFill,
   MdClose,
-  MdOutlineSave,
   MdEdit,
 } from "../../utils/icons/icons";
 
 import "./note-card.css";
 import "../Note/note.css";
 import ModalNoteEditor from "../ModalNoteEditor/ModalNoteEditor";
+import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
-function NoteCard({ noteDetails, className, id }) {
+function NoteCard(props) {
+  const { variant, noteDetails } = props;
   const { notesList, updateNotePinStatus, notesDispatch, deleteNote } =
     useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
+  const {
+    archive,
+    setArchive,
+    addToArchive,
+    restoreFromArchive,
+    deleteFromArchive,
+  } = useArchive();
   return (
-    <div className={`note-card text-md ${noteDetails.cardColor} ${className}`}>
+    <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
         <ModalNoteEditor
           currentNote={noteDetails}
@@ -29,13 +38,13 @@ function NoteCard({ noteDetails, className, id }) {
       )}
       <div className="note-card-header">
         <button
-          className=" icon-button"
+          className=" icon-button text-lg"
           onClick={() => setModalDisplay((prev) => !prev)}
         >
           <MdEdit />
         </button>
         <button
-          className=" icon-button"
+          className=" icon-button text-lg"
           onClick={() => updateNotePinStatus(noteDetails)}
         >
           {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
@@ -56,13 +65,37 @@ function NoteCard({ noteDetails, className, id }) {
       <div className="note-card-footer flex-row">
         <div className="note-date">Created at: {noteDetails.createdAt}</div>
         <div className="note-buttons">
-          <BiArchiveIn />
-          <button
-            className=" icon-button"
-            onClick={() => deleteNote(noteDetails)}
-          >
-            <BiTrashAlt />
-          </button>
+          {variant === "archive" ? (
+            <>
+              <span
+                className=" icon-button text-lg"
+                onClick={() => restoreFromArchive(noteDetails)}
+              >
+                <BiArchiveOut />
+              </span>
+              <button
+                className=" icon-button text-lg"
+                onClick={() => deleteFromArchive(noteDetails)}
+              >
+                <BiTrashAlt />
+              </button>
+            </>
+          ) : (
+            <>
+              <span
+                className=" icon-button text-lg"
+                onClick={() => addToArchive(noteDetails)}
+              >
+                <BiArchiveIn />
+              </span>
+              <button
+                className=" icon-button text-lg"
+                onClick={() => deleteNote(noteDetails)}
+              >
+                <BiTrashAlt />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

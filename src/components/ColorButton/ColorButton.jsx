@@ -3,7 +3,8 @@ import { useNotes } from "../../context/NotesContext/NotesContext";
 import { MdOutlineColorLens } from "../../utils/icons/icons";
 import "./color-button.css";
 
-function ColorButton({ setModal, modalState }) {
+function ColorButton(props) {
+  const { setModal, modalState } = props;
   const [showDropdown, setShowDropdown] = useState(false);
   const cardColors = ["redCard", "blueCard", "orangeCard", "greenCard"];
   const { notesDispatch } = useNotes();

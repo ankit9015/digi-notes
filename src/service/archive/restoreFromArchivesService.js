@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const updateNoteService = async (currentNote, tokenValue) => {
+const restoreFromArchivesService = async (currentNote, tokenValue) => {
   try {
     const response = await axios.post(
-      `/api/notes/${currentNote._id}`,
-      { note: { ...currentNote } },
+      `/api/archives/restore/${currentNote._id}`,
+      { note: {} },
       {
         headers: {
           authorization: tokenValue,
@@ -13,11 +13,8 @@ const updateNoteService = async (currentNote, tokenValue) => {
     );
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-
-export { updateNoteService };
-
-
+export default restoreFromArchivesService;
