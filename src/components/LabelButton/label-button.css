@@ -11,4 +11,5 @@
 .add-label button {
   width: max-content;
   border-color: var(--black);
+  cursor: pointer;
 }

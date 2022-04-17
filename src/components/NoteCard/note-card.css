@@ -1,0 +1,10 @@
+.note-card {
+  width: 50rem;
+  border: 2px solid;
+  padding: 5px;
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: flex-end;
+}

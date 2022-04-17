@@ -60,8 +60,8 @@ html {
   color: inherit;
 }
 
-.note-pin {
-  margin: 5px 5px 0 auto;
+.note-top-icons {
+  justify-content: end;
 }
 
 .note-tags {

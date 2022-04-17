@@ -1,55 +1,52 @@
 import { useState } from "react";
+import { useNotes } from "../../context/NotesContext/NotesContext";
 import {
   BiArchiveIn,
   BiTrashAlt,
   BsPin,
   BsPinFill,
   MdClose,
+  MdOutlineSave,
 } from "../../utils/icons/icons";
 import ColorButton from "../ColorButton/ColorButton";
 import LabelButton from "../LabelButton/LabelButton";
 import "./note.css";
 
-function Note() {
-  const defaultState = {
-    title: "",
-    body: "",
-    isPinned: false,
-    tags: ["home", "fruits"],
-    cardColor: "",
-    createdAt: new Date().toLocaleDateString(),
-  };
-
-  const [noteData, setNoteData] = useState(defaultState);
-  console.log(noteData);
-
-  const removetag = (_item) => {
-    setNoteData({
-      ...noteData,
-      tags: noteData.tags.filter((item) => item !== _item),
-    });
-  };
+function Note({ className, notesDisplayToggle }) {
+  const { notesState, notesDispatch, addNote } = useNotes();
 
   return (
-    <div className={`note ${noteData.cardColor}`}>
+    <div className={`note ${notesState.cardColor} ${className}`}>
       <div className="flex-column">
-        <button
-          className="note-pin text-lg icon-button"
-          onClick={() =>
-            setNoteData({ ...noteData, isPinned: !noteData.isPinned })
-          }
-        >
-          {noteData.isPinned ? <BsPinFill /> : <BsPin />}
-        </button>
+        <div className="flex-row note-top-icons">
+          <button
+            className="text-lg icon-button"
+            onClick={() => {
+              addNote(notesState);
+              notesDisplayToggle((prev) => !prev);
+            }}
+          >
+            <MdOutlineSave />
+          </button>
+          <button
+            className="text-lg icon-button"
+            onClick={() => notesDispatch({ type: "UPDATE-PIN", payload: {} })}
+          >
+            {notesState.isPinned ? <BsPinFill /> : <BsPin />}
+          </button>
+        </div>
 
         <div className="note-content flex-column">
           <textarea
             className="note-title p-xs"
             type="text"
             placeholder="Title of the note"
-            value={noteData.title}
+            value={notesState.title}
             onChange={(e) =>
-              setNoteData({ ...noteData, title: e.target.value })
+              notesDispatch({
+                type: "UPDATE-TITLE",
+                payload: e.target.value,
+              })
             }
             rows="1"
           />
@@ -57,17 +54,25 @@ function Note() {
             className="note-body p-xs"
             type="text"
             placeholder="Body of the note"
-            value={noteData.body}
+            value={notesState.body}
             onChange={(e) =>
-              setNoteData({ ...noteData, body: e.target.value }, 5000)
+              notesDispatch({
+                type: "UPDATE-DESCRIPTION",
+                payload: { description: e.target.value },
+              })
             }
           />
         </div>
         <div className="tags-list m-xs">
-          {noteData.tags.map((item, index) => (
-            <span key={index} className="note-tags text-md">
-              {item}
-              <button className="icon-button" onClick={() => removetag(item)}>
+          {notesState.tags.map((tag) => (
+            <span key={tag} className="note-tags text-md">
+              {tag}
+              <button
+                className="icon-button"
+                onClick={() =>
+                  notesDispatch({ type: "REMOVE-TAG", payload: tag })
+                }
+              >
                 <MdClose aria-hidden="true" />
               </button>
             </span>
@@ -75,12 +80,12 @@ function Note() {
         </div>
       </div>
       <div className="note-footer flex-row text-lg">
-        <div className="note-date">Created at: {noteData.createdAt}</div>
+        <div className="note-date">Created at: {notesState.createdAt}</div>
         <div className="note-buttons">
-          <ColorButton noteData={noteData} setNoteData={setNoteData} />
+          <ColorButton />
           <BiArchiveIn />
           <BiTrashAlt />
-          <LabelButton noteData={noteData} setNoteData={setNoteData} />
+          <LabelButton />
         </div>
       </div>
     </div>
