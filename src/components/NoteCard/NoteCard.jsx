@@ -19,7 +19,6 @@ import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
 function NoteCard(props) {
   const { variant, noteDetails } = props;
-  console.log(variant);
   const { updateNotePinStatus, addNote, deleteNote, trash } = useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
   const { addToArchive, restoreFromArchive, deleteFromArchive } = useArchive();

@@ -17,7 +17,6 @@ const ArchiveProvider = ({ children }) => {
     if (authState.isLoggedIn) {
       (async () => {
         const response = await getArchiveService(authState.authToken);
-        console.log(response.data);
         if (response.data !== undefined) {
           setArchive(response.data.archives);
         }
@@ -27,11 +26,9 @@ const ArchiveProvider = ({ children }) => {
     }
   }, []);
 
-  //   const addToArchive = async () => {};
-
   const addToArchive = async (currentNote) => {
     const response = await addArchiveService(currentNote, authState.authToken);
-    console.log(response);
+
     if (response.data !== undefined) {
       setArchive(response.data.archives);
       setNotesList(response.data.notes);
