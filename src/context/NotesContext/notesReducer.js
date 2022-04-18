@@ -4,7 +4,7 @@ const defaultNotesState = {
   isPinned: false,
   tags: [],
   priority: "Low",
-  cardColor: "whiteCard",
+  cardColor: "defaultColor",
   createdAt: new Date().getTime(), //Date().toLocaleDateString()
   isInTrash: false,
 };

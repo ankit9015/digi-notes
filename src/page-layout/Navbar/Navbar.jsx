@@ -5,7 +5,8 @@ import "./navbar.css";
 
 function Navbar() {
   const getActiveLinkStyle = ({ isActive }) => ({
-    color: isActive ? "var(--primary-color)" : "",
+    color: isActive ? "var(--secondary-color)" : "var(--primay-color)",
+    fontWeight: "bold",
   });
 
   const { authState, logOutHandler } = useAuth();
@@ -50,25 +51,6 @@ function Navbar() {
       >
         Profile
       </NavLink>
-      <NavLink
-        className="m-s text-lg no-link"
-        to="/mockman"
-        style={getActiveLinkStyle}
-      >
-        MockMan
-      </NavLink>
-
-      {authState.isLoggedIn && (
-        <button
-          className="button button-primary text-md"
-          onClick={() => logOutHandler()}
-        >
-          <span>Logout</span>
-        </button>
-      )}
-      <button className="button button-primary text-md">
-        <span>Create New Note</span>
-      </button>
     </div>
   );
 }

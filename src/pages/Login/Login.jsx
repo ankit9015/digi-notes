@@ -90,7 +90,7 @@ function Login() {
                 Login
               </button>
               <button
-                className="button-outline-secondary button text-md text-center"
+                className="button-secondary button text-md text-center"
                 onClick={() => loginAccount(guestUser)}
               >
                 Login as Guest

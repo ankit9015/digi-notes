@@ -3,3 +3,22 @@
   align-items: center;
   padding: 5rem;
 }
+
+.layout-main {
+  background-color: var(--theme-background);
+  flex: 1;
+}
+
+.global-header {
+  padding: 5px;
+}
+
+.logout-button {
+  margin: 5px 5rem 5px auto;
+  font-size: 2rem;
+  padding: -2px 10px;
+}
+
+.app-name {
+  color: var(--primary-color);
+}

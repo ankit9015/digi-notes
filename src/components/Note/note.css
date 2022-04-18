@@ -21,13 +21,13 @@ html {
   background-color: var(--orange-card);
 }
 
-.whiteCard {
-  background-color: var(--white);
+.defaultColor {
+  background-color: var(--theme-background);
 }
 
 .note {
   padding: 10px;
-  border: 2px solid var(--black);
+  border: 2px solid;
   border-radius: 5px;
   width: 50rem;
   gap: 5px;
@@ -101,7 +101,7 @@ html {
   background-color: var(--shadow-gray);
   padding: 2px;
   margin-right: 5px;
-  border: 2px solid var(--black);
+  border: 2px solid;
 }
 
 .dropdown-container {

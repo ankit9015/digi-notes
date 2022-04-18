@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import Main from "./page-layout/Main/Main";
 import Header from "./page-layout/Header/Header";
 import { AuthProvider } from "./context/AuthContext/AuthContext";
@@ -7,13 +8,15 @@ import { ArchiveProvider } from "./context/ArchiveContext/ArchiveContext";
 import { FilterProvider } from "./context/FilterContext/FilterContext";
 
 function App() {
+  const [isDarkTheme, setTheme] = useState(false);
+
   return (
-    <div className="App">
+    <div className={`App flex-column ${isDarkTheme ? "dark-theme" : ""}`}>
       <AuthProvider>
         <NotesProvider>
           <FilterProvider>
             <ArchiveProvider>
-              <Header />
+              <Header setTheme={setTheme} isDarkTheme={isDarkTheme} />
               <Main />
             </ArchiveProvider>
           </FilterProvider>

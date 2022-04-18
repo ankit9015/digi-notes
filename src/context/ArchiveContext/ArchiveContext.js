@@ -36,7 +36,6 @@ const ArchiveProvider = ({ children }) => {
         currentNote,
         authState.authToken
       );
-      console.log(response);
       if (response.data !== undefined) {
         setArchive(response.data.archives);
         setNotesList(response.data.notes);
