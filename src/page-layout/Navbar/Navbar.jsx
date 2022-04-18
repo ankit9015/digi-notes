@@ -43,14 +43,6 @@ function Navbar() {
       >
         Trash
       </NavLink>
-
-      <NavLink
-        className="m-s text-lg no-link"
-        to="/profile"
-        style={getActiveLinkStyle}
-      >
-        Profile
-      </NavLink>
     </div>
   );
 }
