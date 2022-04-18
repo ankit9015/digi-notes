@@ -90,7 +90,9 @@ function ModalNoteEditor({ currentNote, setModalDisplay }) {
         </div>
       </div>
       <div className="note-footer flex-row text-lg">
-        <div className="note-date">Created at: {updatedNote.createdAt}</div>
+        <div className="note-date">
+          Created at: {new Date(updatedNote.createdAt).toLocaleDateString()}
+        </div>
         <div className="note-buttons">
           <PriorityButton setModal={setUpdatedNote} modalState={updatedNote} />
           <ColorButton setModal={setUpdatedNote} modalState={updatedNote} />

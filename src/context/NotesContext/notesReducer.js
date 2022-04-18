@@ -5,7 +5,7 @@ const defaultNotesState = {
   tags: [],
   priority: "Low",
   cardColor: "whiteCard",
-  createdAt: new Date().toLocaleDateString(),
+  createdAt: new Date().getTime(), //Date().toLocaleDateString()
   isInTrash: false,
 };
 

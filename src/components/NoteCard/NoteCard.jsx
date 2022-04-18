@@ -24,7 +24,6 @@ function NoteCard(props) {
   const [modalDisplay, setModalDisplay] = useState(false);
   const { addToArchive, restoreFromArchive, deleteFromArchive } = useArchive();
 
-
   return (
     <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
@@ -50,7 +49,6 @@ function NoteCard(props) {
             {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
           </button>
         )}
-
       </div>
       <p className="text-lg m-xs">{noteDetails.title}</p>
       <p className="text-lg">{noteDetails.description}</p>
@@ -64,9 +62,10 @@ function NoteCard(props) {
         ))}
       </div>
       <div className="note-card-footer flex-row">
-        <div className="note-date">Created at: {noteDetails.createdAt}</div>
+        <div className="note-date">
+          Created at: {new Date(noteDetails.createdAt).toLocaleDateString()}
+        </div>
         <div className="note-buttons">
-
           {variant !== "trash" ? (
             variant === "archive" ? (
               <>
