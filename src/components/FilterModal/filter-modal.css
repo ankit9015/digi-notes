@@ -6,6 +6,7 @@
   position: relative;
   border: 2px solid;
   top: 5px;
+  border-radius: 5px;
 }
 
 .filter-modal .clear-button {

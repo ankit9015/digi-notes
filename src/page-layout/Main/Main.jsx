@@ -20,7 +20,7 @@ function Main() {
   const specialPages = ["/", "/login", "/signup", "page-not-found"];
   const location = useLocation();
   return (
-    <div className="flex-row">
+    <div className="flex-row layout-main">
       {!specialPages.includes(location.pathname) && <Navbar />}
       <div className="page-main">
         <Routes>
