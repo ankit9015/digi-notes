@@ -57,12 +57,7 @@ html {
   flex: 0;
 }
 
-.icon-button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: inherit;
-}
+
 
 .note-top-icons {
   justify-content: end;

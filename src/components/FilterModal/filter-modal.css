@@ -1,6 +1,6 @@
 .filter-modal {
   width: 60%;
-  background-color: var(--white);
+  background-color: var(--theme-background);
   padding: 5px;
   z-index: 99;
   position: relative;
