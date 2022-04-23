@@ -1,5 +1,3 @@
-import { defaultFilterState } from "./filterReducer";
-
 const dateSort = (givenList, filterState) => {
   const { sort } = filterState;
   if (sort) {
