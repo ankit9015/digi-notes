@@ -45,7 +45,7 @@ function Signup() {
 
   const createAccount = () => {
     const { firstname, lastname, email, password, acceptTAndC } = signupForm;
-    console.log(signupForm);
+
     if (email !== "" && password !== "" && acceptTAndC) {
       signupHandler({ firstname, lastname, email, password });
     }
@@ -118,7 +118,7 @@ function Signup() {
 
             <Link
               className="text-center text-md button link-btn button-outline-secondary"
-              to="../Login"
+              to="../login"
             >
               Already have an account
             </Link>

@@ -3,6 +3,7 @@
 
 html {
   --primary-color: #508dce;
+  --accent-color: #8ed7f6;
   --secondary-color: #ee2f5c;
   --theme-background: rgb(243, 239, 239);
 }
@@ -27,6 +28,14 @@ html {
   background-color: transparent;
   cursor: pointer;
   color: inherit;
+}
+
+.icon-button:hover {
+  transform: scale(1.05);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 @media only screen and (min-width: 480px) {

@@ -1,5 +1,6 @@
 .note-card {
-  width: 50rem;
+  width: 40vw;
+  border-radius: 5px;
   border: 2px solid;
   padding: 5px;
 }
@@ -11,4 +12,8 @@
 
 .priority-info {
   margin-right: auto;
+}
+
+.highlighted-text {
+  background-color: var(--accent-color);
 }

@@ -1,3 +1,5 @@
+import { defaultFilterState } from "./filterReducer";
+
 const dateSort = (givenList, filterState) => {
   const { sort } = filterState;
   if (sort) {
@@ -44,6 +46,24 @@ const filterPriorities = (givenList, filterState) => {
   }
 };
 
+const searchFilter = (givenList, filterState) => {
+  const { searchQuery } = filterState;
+  return givenList.filter((givenNote) => {
+    const results = [givenNote.title, givenNote.description].map((item) =>
+      item.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    return results.includes(true);
+  });
+};
+
+const isDefault = (givenList, filterState) => {
+  if (filterState.sort !== "") return givenList;
+  if (filterState.searchQuery !== "") return givenList;
+  if (filterState.labels.length !== 0) return givenList;
+  if (filterState.priorities.length !== 0) return givenList;
+  else return [];
+};
+
 const cumulateiveFilter = (...filters) => {
   return (givenList, filterState) => {
     const generatedList = filters.reduce(
@@ -54,4 +74,11 @@ const cumulateiveFilter = (...filters) => {
   };
 };
 
-export { cumulateiveFilter, filterLabels, filterPriorities, dateSort };
+export {
+  isDefault,
+  searchFilter,
+  cumulateiveFilter,
+  filterLabels,
+  filterPriorities,
+  dateSort,
+};

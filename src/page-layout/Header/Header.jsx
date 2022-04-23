@@ -1,23 +1,27 @@
 import "../../App.css";
+import { useState } from "react";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext/AuthContext";
+import { useFilter } from "../../context/FilterContext/FilterContext";
 import {
   MdDarkMode,
   MdLightMode,
   MdOutlineLightMode,
 } from "../../utils/icons/icons";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 function Header({ setTheme, isDarkTheme }) {
   const specialPages = ["/login", "/signup", "page-not-found"];
   const location = useLocation();
   const { authState, logOutHandler } = useAuth();
+  const { showFilter, setShowFilter } = useFilter();
 
   return (
     <>
       {!specialPages.includes(location.pathname) && (
         <div className="flex-row global-header flex-align-center">
           <span className="text-xl text-extrabold m-s app-name">Digi-Note</span>
-
+          {authState.isLoggedIn && <SearchBox showModal={setShowFilter} />}
           {authState.isLoggedIn && (
             <button
               className="button button-primary logout-button"

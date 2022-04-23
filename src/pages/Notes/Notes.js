@@ -14,17 +14,27 @@ function Notes() {
   const { filteredList } = useFilter();
   const [showNotesEditor, setShowNotesEditor] = useState(false);
   const { notesDispatch } = useNotes();
-  const pinnedNotes = filteredList.filter((item) => item.isPinned);
-  const notPinnedNotes = filteredList.filter((item) => !item.isPinned);
+  const pinnedNotes = notesList.filter((item) => item.isPinned);
+  const notPinnedNotes = notesList.filter((item) => !item.isPinned);
   const [showFilter, setShowFilter] = useState(false);
   return (
     <div className="flex-column flex-align-center gap-5">
-      <SearchBox showModal={setShowFilter} givenList={notesList} />
-      {showFilter && <FilterModal />}
+      {/* <SearchBox showModal={setShowFilter} givenList={notesList} />
+      {showFilter && <FilterModal showModal={setShowFilter} />} */}
       <Note
         className={showNotesEditor ? "" : "display-none"}
         notesDisplayToggle={setShowNotesEditor}
       />
+      {/* {filteredList.length > 0 && (
+        <div className="pinned-notes flex-column">
+          <h3 className="H3">Filtered List</h3>
+          {filteredList.map((item) => (
+            <div key={item._id}>
+              <NoteCard noteDetails={item} />
+            </div>
+          ))}
+        </div>
+      )} */}
 
       {pinnedNotes.length > 0 && (
         <div className="pinned-notes flex-column">

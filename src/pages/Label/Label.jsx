@@ -8,7 +8,6 @@ function Label() {
 
   return (
     <div className="flex-column flex-align-center gap-5">
-      <SearchBox />
       {uniqueLabels.length > 0 &&
         uniqueLabels.map((label) => (
           <div key={label} className="m-l">
