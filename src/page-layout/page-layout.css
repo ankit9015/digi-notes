@@ -16,6 +16,11 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
+  background-color: var(--white);
+}
+
+.dark-theme .global-header {
+  background-color: var(--dark-black);
 }
 
 .global-header .search-box-wrapper {

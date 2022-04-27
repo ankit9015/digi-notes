@@ -23,12 +23,14 @@ function Header(props) {
     <>
       {!specialPages.includes(location.pathname) && (
         <div className="flex-row global-header flex-align-center">
-          <span
-            className="icon-button text-xl menu-button"
-            onClick={() => setShowNavbar((prev) => !prev)}
-          >
-            <MdMenu />
-          </span>
+          {authState.isLoggedIn && location.pathname !== "/" && (
+            <span
+              className="icon-button text-xl menu-button"
+              onClick={() => setShowNavbar((prev) => !prev)}
+            >
+              <MdMenu />
+            </span>
+          )}
           <span className="text-xl text-extrabold m-s app-name">Digi-Note</span>
           {authState.isLoggedIn && location.pathname !== "/" && (
             <>
