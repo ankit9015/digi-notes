@@ -98,7 +98,7 @@ function Login() {
 
               <Link
                 className="text-center text-md button link-btn button-outline-primary"
-                to="../Signup"
+                to="../signup"
               >
                 Create new account
               </Link>

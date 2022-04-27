@@ -14,12 +14,12 @@ function App() {
     <div className={`App flex-column ${isDarkTheme ? "dark-theme" : ""}`}>
       <AuthProvider>
         <NotesProvider>
-          <FilterProvider>
-            <ArchiveProvider>
+          <ArchiveProvider>
+            <FilterProvider>
               <Header setTheme={setTheme} isDarkTheme={isDarkTheme} />
               <Main />
-            </ArchiveProvider>
-          </FilterProvider>
+            </FilterProvider>
+          </ArchiveProvider>
         </NotesProvider>
       </AuthProvider>
     </div>

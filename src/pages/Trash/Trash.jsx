@@ -9,7 +9,6 @@ function Trash() {
 
   return (
     <div className="flex-column flex-align-center gap-5">
-      <SearchBox />
       {trash.length > 0 && (
         <>
           <h3 className="H3">Trash</h3>

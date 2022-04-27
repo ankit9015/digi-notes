@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNotes } from "../../context/NotesContext/NotesContext";
+import Highlight from "react-highlighter";
 
 import {
   BiArchiveIn,
@@ -18,7 +19,7 @@ import ModalNoteEditor from "../ModalNoteEditor/ModalNoteEditor";
 import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
 function NoteCard(props) {
-  const { variant, noteDetails } = props;
+  const { variant, noteDetails, highlights } = props;
 
   const { updateNotePinStatus, addNote, deleteNote, trash } = useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
@@ -50,8 +51,16 @@ function NoteCard(props) {
           </button>
         )}
       </div>
-      <p className="text-lg m-xs">{noteDetails.title}</p>
-      <p className="text-lg">{noteDetails.description}</p>
+      <p className="text-md m-xs">
+        <Highlight matchClass="highlighted-text" search={highlights ?? ""}>
+          {noteDetails.title}
+        </Highlight>
+      </p>
+      <p className="text-md">
+        <Highlight matchClass="highlighted-text" search={highlights ?? ""}>
+          {noteDetails.description}
+        </Highlight>
+      </p>
 
       <div className="tags-list m-xs">
         {noteDetails.tags.map((tag) => (

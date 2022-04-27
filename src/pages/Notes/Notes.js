@@ -11,21 +11,16 @@ import "../pages.css";
 
 function Notes() {
   const { notesList } = useNotes();
-  const { filteredList } = useFilter();
   const [showNotesEditor, setShowNotesEditor] = useState(false);
   const { notesDispatch } = useNotes();
-  const pinnedNotes = filteredList.filter((item) => item.isPinned);
-  const notPinnedNotes = filteredList.filter((item) => !item.isPinned);
-  const [showFilter, setShowFilter] = useState(false);
+  const pinnedNotes = notesList.filter((item) => item.isPinned);
+  const notPinnedNotes = notesList.filter((item) => !item.isPinned);
   return (
     <div className="flex-column flex-align-center gap-5">
-      <SearchBox showModal={setShowFilter} givenList={notesList} />
-      {showFilter && <FilterModal />}
       <Note
         className={showNotesEditor ? "" : "display-none"}
         notesDisplayToggle={setShowNotesEditor}
       />
-
       {pinnedNotes.length > 0 && (
         <div className="pinned-notes flex-column">
           <h3 className="H3">Pinned Notes</h3>

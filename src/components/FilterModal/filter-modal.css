@@ -1,5 +1,5 @@
 .filter-modal {
-  width: 60%;
+  width: 40vw;
   background-color: var(--theme-background);
   padding: 5px;
   z-index: 99;
@@ -11,4 +11,8 @@
 
 .filter-modal .clear-button {
   margin: 5px auto 5px 5px;
+}
+
+.filter-modal .cross-button {
+  margin-left: auto;
 }

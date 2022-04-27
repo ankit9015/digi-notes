@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import FilteredNotes from "../../pages/FilteredNotes/FilteredNotes";
 import MockAPI from "../../pages/MockMan/MockMan";
 import Notes from "../../pages/Notes/Notes";
 import {
@@ -33,6 +34,14 @@ function Main() {
             element={
               <PrivateRoute>
                 <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/filteredNotes"
+            element={
+              <PrivateRoute>
+                <FilteredNotes />
               </PrivateRoute>
             }
           />

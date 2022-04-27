@@ -12,10 +12,18 @@
 .global-header {
   padding: 5px;
   justify-content: space-between;
+  position: relative;
+}
+
+.global-header .search-box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-shrink: 3;
 }
 
 .logout-button {
-  margin: 5px 5rem 5px auto;
+  margin: 5px 0 5px auto;
   font-size: 2rem;
   padding: -2px 10px;
 }
