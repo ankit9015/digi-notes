@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 import "./navbar.css";
 
-function Navbar() {
+function Navbar(props) {
   const getActiveLinkStyle = ({ isActive }) => ({
     color: isActive ? "var(--secondary-color)" : "var(--primay-color)",
     fontWeight: "bold",
@@ -12,7 +12,11 @@ function Navbar() {
   const { authState, logOutHandler } = useAuth();
 
   return (
-    <div className="flex-column m-l text-md navbar-vertical">
+    <div
+      className={`flex-column p-l text-md navbar-vertical ${
+        props.showNavbar ? "navbar-visible" : ""
+      }`}
+    >
       <NavLink
         className="m-s text-lg no-link"
         to="/notes"
@@ -43,6 +47,12 @@ function Navbar() {
       >
         Trash
       </NavLink>
+      <button
+        className="button button-primary logout-button"
+        onClick={() => logOutHandler()}
+      >
+        <span>Logout</span>
+      </button>
     </div>
   );
 }

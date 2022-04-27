@@ -1,12 +1,15 @@
 .filter-modal {
-  width: 40vw;
+  width: 50vw;
   background-color: var(--theme-background);
   padding: 5px;
   z-index: 99;
   position: relative;
   border: 2px solid;
-  top: 5px;
   border-radius: 5px;
+  position: fixed;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .filter-modal .clear-button {
@@ -15,4 +18,16 @@
 
 .filter-modal .cross-button {
   margin-left: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .filter-modal {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .filter-modal {
+    width: 80vw;
+  }
 }

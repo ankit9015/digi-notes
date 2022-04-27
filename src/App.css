@@ -4,19 +4,27 @@
 html {
   --primary-color: #508dce;
   --accent-color: #8ed7f6;
-  --secondary-color: #ee2f5c;
-  --theme-background: rgb(243, 239, 239);
+  --secondary-color: #f5476fe3;
+  --theme-background: rgb(234, 226, 226);
+  --dark-bg: rgb(39, 38, 38);
+  --dark-black: rgb(10, 10, 10);
+  box-sizing: border-box;
 }
 
 .dark-theme {
   --theme-background: rgb(39, 38, 38);
   color: var(--white);
-  background-color: rgb(10, 10, 10);
+  background-color: var(--dark-black);
   border-color: var(--white);
 }
 
+.dark-theme input {
+  background-color: var(--dark-black);
+}
 .App {
   min-height: 100vh;
+  min-width: 100%;
+  overflow-x: hidden;
 }
 
 .display-none {
@@ -38,38 +46,30 @@ html {
   flex-wrap: wrap;
 }
 
-@media only screen and (min-width: 480px) {
-  html {
-    font-size: 45%;
-  }
-}
-
-@media only screen and (min-width: 640px) {
+@media only screen and (max-width: 480px) {
   html {
     font-size: 47%;
   }
-}
-
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 50%;
+  .button {
+    min-width: 48px;
+    min-height: 40px;
+    border-radius: 5px;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 480px) and (max-width: 768px) {
   html {
-    font-size: 52.5%;
+    font-size: 50%;
+  }
+  .button {
+    min-width: 48px;
+    min-height: 40px;
+    border-radius: 5px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   html {
-    font-size: 57.5%;
-  }
-}
-
-@media only screen and (min-width: 1536px) {
-  html {
-    font-size: 62.5%;
+    font-size: 57%;
   }
 }

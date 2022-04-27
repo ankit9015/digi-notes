@@ -16,7 +16,7 @@ function FilterModal({ showModal }) {
         <MdClose aria-hidden="true" />
       </button>
       <h3 className="H3 text-center text-bold">Filter</h3>
-      <div
+      <button
         className="button button-outline-secondary clear-button text-md"
         onClick={() => {
           filterDispatch({ type: "CLEAR-ALL" });
@@ -24,7 +24,7 @@ function FilterModal({ showModal }) {
         }}
       >
         Clear All
-      </div>
+      </button>
       <div className="text-md m-s">
         <p className="text-md">Sort by:</p>
         <div className="flex-row flex-wrap">

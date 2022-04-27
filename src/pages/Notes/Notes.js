@@ -16,7 +16,7 @@ function Notes() {
   const pinnedNotes = notesList.filter((item) => item.isPinned);
   const notPinnedNotes = notesList.filter((item) => !item.isPinned);
   return (
-    <div className="flex-column flex-align-center gap-5">
+    <div className="flex-column flex-align-center gap-5 notes-page">
       <Note
         className={showNotesEditor ? "" : "display-none"}
         notesDisplayToggle={setShowNotesEditor}

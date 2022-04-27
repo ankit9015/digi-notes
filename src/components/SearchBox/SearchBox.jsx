@@ -19,33 +19,49 @@ function SearchBox(props) {
   }, [searchState.getSearch]);
 
   return (
-    <div className={`search-box text-md ${props.className}`}>
-      <span
-        className="icon-button"
-        onClick={() => setSearchState({ ...searchState, getSearch: true })}
+    <div
+      className={`search-box-wrapper p-s ${
+        props.showSearchbox ? "searchbox-visible" : ""
+      }`}
+    >
+      <div
+        className={`search-box text-md ${props.className} ${
+          props.showSearchbox ? "searchbox-visible" : ""
+        }`}
       >
-        <FaSearch />
-      </span>
+        <span
+          className="icon-button"
+          onClick={() => {
+            setSearchState({ ...searchState, getSearch: true });
+            setTimeout(() => props.setShowSearchbox(false), 500);
+          }}
+        >
+          {" "}
+          <Link className="no-link " to="/filteredNotes">
+            <FaSearch />
+          </Link>
+        </span>
 
-      <input
-        type="search"
-        className="text-md"
-        value={searchState.query}
-        onChange={(e) =>
-          setSearchState({ ...searchState, query: e.target.value })
-        }
-      />
+        <input
+          type="search"
+          className="text-md"
+          value={searchState.query}
+          onChange={(e) =>
+            setSearchState({ ...searchState, query: e.target.value })
+          }
+        />
 
-      <span
-        className="icon-button"
-        onClick={() => {
-          props.showModal((prev) => !prev);
-        }}
-      >
-        <Link className="no-link " to="/filteredNotes">
-          <FaFilter />
-        </Link>
-      </span>
+        <span
+          className="icon-button"
+          onClick={() => {
+            props.showModal((prev) => !prev);
+          }}
+        >
+          <Link className="no-link " to="/filteredNotes">
+            <FaFilter />
+          </Link>
+        </span>
+      </div>
     </div>
   );
 }

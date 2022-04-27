@@ -11,3 +11,7 @@
   display: flex;
   justify-content: space-around;
 }
+
+.dark-theme .color-dropdown {
+  background-color: var(--dark-bg);
+}

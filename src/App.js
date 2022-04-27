@@ -9,6 +9,7 @@ import { FilterProvider } from "./context/FilterContext/FilterContext";
 
 function App() {
   const [isDarkTheme, setTheme] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   return (
     <div className={`App flex-column ${isDarkTheme ? "dark-theme" : ""}`}>
@@ -16,8 +17,12 @@ function App() {
         <NotesProvider>
           <ArchiveProvider>
             <FilterProvider>
-              <Header setTheme={setTheme} isDarkTheme={isDarkTheme} />
-              <Main />
+              <Header
+                setTheme={setTheme}
+                isDarkTheme={isDarkTheme}
+                setShowNavbar={setShowNavbar}
+              />
+              <Main showNavbar={showNavbar} />
             </FilterProvider>
           </ArchiveProvider>
         </NotesProvider>

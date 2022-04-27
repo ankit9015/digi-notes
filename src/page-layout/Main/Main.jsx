@@ -17,13 +17,15 @@ import PrivateRoute from "../../Routes/PrivateRoute";
 import Navbar from "../Navbar/Navbar";
 import "../page-layout.css";
 
-function Main() {
+function Main(props) {
   const specialPages = ["/", "/login", "/signup", "page-not-found"];
   const location = useLocation();
   return (
     <div className="flex-row layout-main">
-      {!specialPages.includes(location.pathname) && <Navbar />}
-      <div className="page-main">
+      {!specialPages.includes(location.pathname) && (
+        <Navbar showNavbar={props.showNavbar} />
+      )}
+      <div className="page-main p-m">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

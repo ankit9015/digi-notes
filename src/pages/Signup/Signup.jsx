@@ -116,12 +116,11 @@ function Signup() {
               Create new account
             </button>
 
-            <Link
-              className="text-center text-md button link-btn button-outline-secondary"
-              to="../login"
-            >
-              Already have an account
-            </Link>
+            <button className="text-center text-md button link-btn button-outline-secondary">
+              <Link className="no-link" to="../login">
+                Already have an account
+              </Link>
+            </button>
           </div>
         </div>
       </div>

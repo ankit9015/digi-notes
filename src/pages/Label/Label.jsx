@@ -10,12 +10,12 @@ function Label() {
     <div className="flex-column flex-align-center gap-5">
       {uniqueLabels.length > 0 &&
         uniqueLabels.map((label) => (
-          <div key={label} className="m-l">
-            <h3 className="H3 m-s">{label.toUpperCase()}</h3>
+          <div key={label}>
+            <h3 className="H3 m-xs">{label.toUpperCase()}</h3>
             {notesList
               .filter((item) => item.tags.includes(label))
               .map((note) => (
-                <div key={note._id} className="m-s">
+                <div key={note._id}>
                   <NoteCard variant="label" noteDetails={note} />
                 </div>
               ))}

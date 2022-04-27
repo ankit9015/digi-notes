@@ -1,8 +1,17 @@
 .note-card {
-  width: 40vw;
+  width: 50rem;
   border-radius: 5px;
   border: 2px solid;
   padding: 5px;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.modal-note-editor {
+  transform: translateX(-50%) translateY(-20%);
+  transition: translate 5s;
+  left: 50%;
+  transition-timing-function: ease-out;
 }
 
 .note-card-header {
@@ -16,4 +25,26 @@
 
 .highlighted-text {
   background-color: var(--accent-color);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+  .note-card {
+    width: 45vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .note-card {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .note-card {
+    width: 80vw;
+  }
+
+  .label-button .dropdown {
+    left: -250%;
+  }
 }

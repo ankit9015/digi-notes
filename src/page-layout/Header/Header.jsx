@@ -6,29 +6,51 @@ import { useFilter } from "../../context/FilterContext/FilterContext";
 import {
   MdDarkMode,
   MdLightMode,
-  MdOutlineLightMode,
+  MdMenu,
+  MdSearch,
 } from "../../utils/icons/icons";
 import SearchBox from "../../components/SearchBox/SearchBox";
 
-function Header({ setTheme, isDarkTheme }) {
+function Header(props) {
+  const { setTheme, isDarkTheme, setShowNavbar } = props;
   const specialPages = ["/login", "/signup", "page-not-found"];
   const location = useLocation();
   const { authState, logOutHandler } = useAuth();
-  const { showFilter, setShowFilter } = useFilter();
+  const { setShowFilter } = useFilter();
+  const [showSearchbox, setShowSearchbox] = useState(false);
 
   return (
     <>
       {!specialPages.includes(location.pathname) && (
         <div className="flex-row global-header flex-align-center">
+          <span
+            className="icon-button text-xl menu-button"
+            onClick={() => setShowNavbar((prev) => !prev)}
+          >
+            <MdMenu />
+          </span>
           <span className="text-xl text-extrabold m-s app-name">Digi-Note</span>
-          {authState.isLoggedIn && <SearchBox showModal={setShowFilter} />}
-          {authState.isLoggedIn && (
-            <button
-              className="button button-primary logout-button"
-              onClick={() => logOutHandler()}
-            >
-              <span>Logout</span>
-            </button>
+          {authState.isLoggedIn && location.pathname !== "/" && (
+            <>
+              <SearchBox
+                showModal={setShowFilter}
+                showSearchbox={showSearchbox}
+                setShowSearchbox={setShowSearchbox}
+              />
+
+              <span
+                className="search-show-button icon-button text-xl"
+                onClick={() => setShowSearchbox((prev) => !prev)}
+              >
+                <MdSearch />
+              </span>
+              <button
+                className="button button-primary logout-button"
+                onClick={() => logOutHandler()}
+              >
+                <span>Logout</span>
+              </button>
+            </>
           )}
           <span
             className="icon-button text-xl m-m"

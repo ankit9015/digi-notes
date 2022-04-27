@@ -10,14 +10,15 @@ import {
 } from "../../utils/icons/icons";
 import ColorButton from "../ColorButton/ColorButton";
 import LabelButton from "../LabelButton/LabelButton";
-import "../Note/note.css";
 import PriorityButton from "../PriorityButton/PriorityButton";
 import "./modal-note.css";
+import "../Note/note.css";
 
 function ModalNoteEditor({ currentNote, setModalDisplay }) {
   const { updateNote, defaultNotesState } = useNotes();
 
   const [updatedNote, setUpdatedNote] = useState(currentNote);
+  console.log(updatedNote);
 
   return (
     <div className={`modal-note-editor note ${updatedNote.cardColor}`}>
@@ -89,14 +90,13 @@ function ModalNoteEditor({ currentNote, setModalDisplay }) {
             ))}
         </div>
       </div>
-      <div className="note-footer flex-row text-lg">
+      <div className="note-footer flex-row flex-wrap text-lg">
         <div className="note-date">
           Created at: {new Date(updatedNote.createdAt).toLocaleDateString()}
         </div>
-        <div className="note-buttons">
+        <div className="note-buttons flex-row flex-wrap">
           <PriorityButton setModal={setUpdatedNote} modalState={updatedNote} />
           <ColorButton setModal={setUpdatedNote} modalState={updatedNote} />
-          <BiArchiveIn />
           <span
             className="icon-button"
             onClick={() =>

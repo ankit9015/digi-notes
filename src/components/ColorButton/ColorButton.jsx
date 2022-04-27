@@ -10,7 +10,7 @@ function ColorButton(props) {
   const { notesDispatch } = useNotes();
 
   return (
-    <span className="color-picker dropdown-container">
+    <span className={`color-picker dropdown-container ${props.className}`}>
       <button
         className="text-lg icon-button"
         onClick={(e) => {

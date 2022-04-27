@@ -14,7 +14,7 @@ function FilteredNotes() {
     (item) => item.from === "archive"
   );
   return (
-    <div className="flex-column flex-align-center gap-5">
+    <div className="filter-notes-page flex-column flex-align-center gap-5">
       {showFilter && <FilterModal showModal={setShowFilter} />}
       <h2 className="H2 m-m">Filter Result: {filteredList.length}</h2>
 

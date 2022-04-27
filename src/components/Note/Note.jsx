@@ -22,7 +22,7 @@ function Note({ className, notesDisplayToggle }) {
       <div className="flex-column">
         <div className="flex-row note-top-icons">
           <button
-            className="text-lg icon-button"
+            className="text-xl icon-button"
             onClick={() => {
               addNote(notesState);
               notesDisplayToggle((prev) => !prev);
@@ -41,7 +41,7 @@ function Note({ className, notesDisplayToggle }) {
 
         <div className="note-content flex-column">
           <textarea
-            className="note-title p-xs"
+            className="note-title text-lg p-xs"
             type="text"
             placeholder="Title of the note"
             value={notesState.title}
@@ -54,7 +54,7 @@ function Note({ className, notesDisplayToggle }) {
             rows="1"
           />
           <textarea
-            className="note-body p-xs"
+            className="note-body text-lg p-xs"
             type="text"
             placeholder="Body of the note"
             value={notesState.description}
@@ -82,25 +82,21 @@ function Note({ className, notesDisplayToggle }) {
           ))}
         </div>
       </div>
-      <div className="note-footer flex-row text-lg">
+      <div className="note-footer flex-row flex-wrap text-lg">
         <div className="note-date">
           Created at: {new Date(notesState.createdAt).toLocaleDateString()}
         </div>
-        <div className="note-buttons">
+
+        <div className="note-buttons flex-row gap-5">
           <PriorityButton />
           <ColorButton />
-          <span>
-            <BiArchiveIn />
-          </span>
-
+          <LabelButton />
           <span
             className="icon-button"
             onClick={() => notesDispatch({ type: "RESET-NOTE" })}
           >
             <BiTrashAlt />
           </span>
-
-          <LabelButton />
         </div>
       </div>
     </div>

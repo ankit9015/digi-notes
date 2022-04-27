@@ -62,16 +62,16 @@ function NoteCard(props) {
         </Highlight>
       </p>
 
-      <div className="tags-list m-xs">
+      <div className="tags-list m-xs ">
         {noteDetails.tags.map((tag) => (
           <span key={tag} className="note-tags text-md">
-            {tag}
-            <MdClose aria-hidden="true" />
+            <span className="">{tag}</span>
+            {/* <MdClose aria-hidden="true" className="text-md icon-button" /> */}
           </span>
         ))}
       </div>
-      <div className="note-card-footer flex-row">
-        <div className="note-date">
+      <div className="note-footer flex-row flex-wrap text-lg">
+        <div className="note-date text-md">
           Created at: {new Date(noteDetails.createdAt).toLocaleDateString()}
         </div>
         <div className="note-buttons">

@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useReducer,
-  useEffect,
-} from "react";
+import { createContext, useContext, useState, useReducer } from "react";
 import { useNotes } from "../NotesContext/NotesContext";
 import {
   isDefault,
@@ -25,7 +19,6 @@ const FilterProvider = ({ children }) => {
     defaultFilterState
   );
   const [showFilter, setShowFilter] = useState(false);
-  const [filteredList, setFilteredList] = useState([]);
   const { notesList } = useNotes();
   const { archive } = useArchive();
 
@@ -34,22 +27,17 @@ const FilterProvider = ({ children }) => {
     ...archive.map((item) => ({ ...item, from: "archive" })),
   ];
 
-  useEffect(() => {
-    setFilteredList(
-      cumulateiveFilter(
-        dateSort,
-        filterLabels,
-        filterPriorities,
-        searchFilter,
-        isDefault
-      )(listToFilter, filterState)
-    );
-  }, [filterState]);
+  let filteredList = cumulateiveFilter(
+    dateSort,
+    filterLabels,
+    filterPriorities,
+    searchFilter,
+    isDefault
+  )(listToFilter, filterState);
 
   return (
     <FilterContext.Provider
       value={{
-        setFilteredList,
         filterState,
         filterDispatch,
         filteredList,

@@ -9,6 +9,8 @@ import {
   MdDarkMode,
   MdLightMode,
   MdOutlineLightMode,
+  MdMenu,
+  MdSearch,
 } from "react-icons/md";
 import {
   FaSearch,
@@ -20,9 +22,11 @@ import {
 } from "react-icons/fa";
 
 export {
+  MdSearch,
   MdLightMode,
   MdOutlineLightMode,
   MdDarkMode,
+  MdMenu,
   BsPin,
   BiArchiveOut,
   BiArchiveIn,
