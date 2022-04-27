@@ -13,5 +13,23 @@
 }
 
 .dark-theme .color-dropdown {
-  background-color: var(--dark-bg);
+  background-color: var(--dark-black);
+}
+
+.no-color {
+  background-color: var(--theme-background);
+  border: 1px solid;
+  content: "x";
+}
+
+@media screen and (max-width: 768px) {
+  .color-circle {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin: 5px;
+  }
+
+  .color-dropdown {
+    width: 25vw;
+  }
 }

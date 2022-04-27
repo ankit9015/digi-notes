@@ -18,8 +18,10 @@ html {
   border-color: var(--white);
 }
 
-.dark-theme input {
+.dark-theme input,
+.dark-theme select {
   background-color: var(--dark-black);
+  color: var(--white);
 }
 .App {
   min-height: 100vh;
