@@ -51,10 +51,12 @@ html {
 
 .note-body {
   flex: 99;
+  max-height: 30%;
 }
 
 .note-title {
   flex: 0;
+  max-height: 10%;
 }
 
 .note-top-icons {
@@ -120,7 +122,12 @@ html {
 @media only screen and (max-width: 480px) {
   .note {
     width: 80vw;
+    max-height: 50vh;
   }
+
+  /* .note-body {
+    max-height: 5rem;
+  } */
 
   .label-button .dropdown {
     left: -250%;
