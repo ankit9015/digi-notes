@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 import {
-  BiArchiveIn,
   BiTrashAlt,
   BsPin,
   BsPinFill,
@@ -13,6 +12,7 @@ import LabelButton from "../LabelButton/LabelButton";
 import PriorityButton from "../PriorityButton/PriorityButton";
 import "./modal-note.css";
 import "../Note/note.css";
+import "../Modal/Modal";
 
 function ModalNoteEditor({ currentNote, setModalDisplay }) {
   const { updateNote, defaultNotesState } = useNotes();

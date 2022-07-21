@@ -8,7 +8,6 @@ import {
   BiTrashAlt,
   BsPin,
   BsPinFill,
-  MdClose,
   MdEdit,
   FaTrashRestoreAlt,
 } from "../../utils/icons/icons";
@@ -17,6 +16,7 @@ import "./note-card.css";
 import "../Note/note.css";
 import ModalNoteEditor from "../ModalNoteEditor/ModalNoteEditor";
 import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
+import Modal from "../Modal/Modal";
 
 function NoteCard(props) {
   const { variant, noteDetails, highlights } = props;
@@ -28,10 +28,16 @@ function NoteCard(props) {
   return (
     <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
-        <ModalNoteEditor
-          currentNote={noteDetails}
-          setModalDisplay={setModalDisplay}
-        />
+        <Modal
+          closeModal={() => {
+            setModalDisplay(false);
+          }}
+        >
+          <ModalNoteEditor
+            currentNote={noteDetails}
+            setModalDisplay={setModalDisplay}
+          />
+        </Modal>
       )}
       <div className="note-card-header">
         <span className="priority-info">Priority: {noteDetails.priority}</span>

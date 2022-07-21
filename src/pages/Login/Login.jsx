@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import "../pages.css";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
@@ -8,15 +7,12 @@ import EmailInput from "../../components/EmailInput/EmailInput";
 
 function Login() {
   const { loginHandler } = useAuth();
-
   const savedLoginInfo = JSON.parse(localStorage.getItem("SAVED-LOGIN-INFO"));
-
   const [loginForm, setLoginForm] = useState({
     email: savedLoginInfo ? savedLoginInfo.email : "",
     password: savedLoginInfo ? savedLoginInfo.password : "",
     rememberUser: savedLoginInfo ? true : false,
   });
-
   const guestUser = {
     email: "adarshbalika@gmail.com",
     password: "adarshBalika123",
@@ -63,7 +59,6 @@ function Login() {
                 })
               }
             />
-
             <label>
               <input
                 type="checkbox"
@@ -78,7 +73,6 @@ function Login() {
               />
               <span className="text-md">Remember me</span>
             </label>
-
             <Link className="text-blue" to="">
               Forgot your Password?
             </Link>

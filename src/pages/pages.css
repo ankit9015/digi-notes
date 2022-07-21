@@ -55,6 +55,13 @@
   max-width: 50%;
 }
 
+.page-not-found {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--primary-color);
+}
+
 @media screen and (max-width: 1020px) {
   .form-card {
     max-width: 45%;

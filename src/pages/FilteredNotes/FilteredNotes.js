@@ -1,10 +1,7 @@
-import { useState } from "react";
+import React, { useEffect } from "react";
 import FilterModal from "../../components/FilterModal/FilterModal";
-import Note from "../../components/Note/Note";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import SearchBox from "../../components/SearchBox/SearchBox";
 import { useFilter } from "../../context/FilterContext/FilterContext";
-import { useNotes } from "../../context/NotesContext/NotesContext";
 import "../pages.css";
 
 function FilteredNotes() {
@@ -13,6 +10,10 @@ function FilteredNotes() {
   const filteredArchive = filteredList.filter(
     (item) => item.from === "archive"
   );
+
+  useEffect(() => {
+    document.title = "Notes";
+  }, []);
   return (
     <div className="filter-notes-page flex-column flex-align-center gap-5">
       {showFilter && <FilterModal showModal={setShowFilter} />}

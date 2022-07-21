@@ -1,7 +1,5 @@
 .modal-note-editor {
-  position: absolute;
   width: 45vw;
-  z-index: 99;
 }
 
 @media only screen and (max-width: 768px) {

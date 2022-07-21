@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import SearchBox from "../../components/SearchBox/SearchBox";
 import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 
 function Archive() {
-  const { archive, setArchive } = useArchive();
+  const { archive } = useArchive();
+
+  useEffect(() => {
+    document.title = "Archive";
+  }, []);
   return (
     <div className="flex-column flex-align-center gap-5">
       {archive.length > 0 && (

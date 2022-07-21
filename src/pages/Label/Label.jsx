@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 
 function Label() {
   const { notesList, uniqueLabels } = useNotes();
+
+  useEffect(() => {
+    document.title = "Label";
+  }, []);
 
   return (
     <div className="flex-column flex-align-center gap-5">

@@ -7,13 +7,6 @@
   margin: 1rem 0;
 }
 
-.modal-note-editor {
-  transform: translateX(-50%) translateY(-20%);
-  transition: translate 5s;
-  left: 50%;
-  transition-timing-function: ease-out;
-}
-
 .note-card-header {
   display: flex;
   justify-content: flex-end;

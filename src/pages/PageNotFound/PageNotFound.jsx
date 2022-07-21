@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import "../pages.css";
 
 function PageNotFound() {
+  useEffect(() => {
+    document.title = "404";
+  }, []);
   return (
-    <div className="text-center text-md">PageNotFound ----- Broken link!!</div>
+    <div className="page-not-found">
+      <p className="text-center text-xl font-bold">404 - Page Not Found</p>
+    </div>
   );
 }
 
