@@ -14,8 +14,8 @@ function Login() {
     rememberUser: savedLoginInfo ? true : false,
   });
   const guestUser = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika123",
+    email: "ankitjoshi9015@gmail.com",
+    password: "ankit123",
     rememberUser: false,
   };
 
