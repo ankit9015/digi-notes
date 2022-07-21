@@ -1,4 +1,3 @@
-@import url(https://unpkg.com/mockman-js@latest/dist/style.css);
 @import url(https://socket-ui-1.netlify.app/components/components.css);
 
 html {
@@ -14,6 +13,7 @@ html {
 
 .dark-theme {
   --theme-background: rgb(39, 38, 38);
+  --translucent-gray: rgba(81, 80, 80, 0.76);
   color: var(--white);
   background-color: var(--dark-black);
   border-color: var(--white);

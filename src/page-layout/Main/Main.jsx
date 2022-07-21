@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext/ThemeContext";
 import FilteredNotes from "../../pages/FilteredNotes/FilteredNotes";
 import MockAPI from "../../pages/MockMan/MockMan";
 import Notes from "../../pages/Notes/Notes";
@@ -20,8 +21,9 @@ import "../page-layout.css";
 function Main(props) {
   const specialPages = ["/", "/login", "/signup", "page-not-found"];
   const location = useLocation();
+  const { isDarkTheme } = useTheme();
   return (
-    <div className="flex-row layout-main">
+    <div className={`flex-row layout-main  ${isDarkTheme ? "dark-theme" : ""}`}>
       {!specialPages.includes(location.pathname) && (
         <Navbar showNavbar={props.showNavbar} />
       )}

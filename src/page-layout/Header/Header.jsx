@@ -10,9 +10,11 @@ import {
   MdSearch,
 } from "../../utils/icons/icons";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import { useTheme } from "../../context/ThemeContext/ThemeContext";
 
 function Header(props) {
-  const { setTheme, isDarkTheme, setShowNavbar } = props;
+  const { setShowNavbar } = props;
+  const { setTheme, isDarkTheme } = useTheme();
   const specialPages = ["/login", "/signup", "page-not-found"];
   const location = useLocation();
   const { authState, logOutHandler } = useAuth();
@@ -22,7 +24,11 @@ function Header(props) {
   return (
     <>
       {!specialPages.includes(location.pathname) && (
-        <div className="flex-row global-header flex-align-center">
+        <div
+          className={`flex-row global-header flex-align-center  ${
+            isDarkTheme ? "dark-theme" : ""
+          }`}
+        >
           {authState.isLoggedIn && location.pathname !== "/" && (
             <span
               className="icon-button text-xl menu-button"
