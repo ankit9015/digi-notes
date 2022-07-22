@@ -18,7 +18,7 @@ const ArchiveProvider = ({ children }) => {
       if (authState.isLoggedIn) {
         (async () => {
           const response = await getArchiveService(authState.authToken);
-          if (response.data !== undefined) {
+          if (response?.data !== undefined) {
             setArchive(response.data.archives);
           }
         })();

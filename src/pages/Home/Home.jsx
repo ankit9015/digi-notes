@@ -13,7 +13,8 @@ function Home() {
         className="hero-image"
       />
       <h1 className="hero-heading H1">
-        <span className="app-name">Digi-note</span> to keep you productive
+        <span className="app-name">Digi-note</span> to improve your
+        productivity.
       </h1>
       <div className="hero-links-wrapper flex-row flex-wrap flex-center">
         <button className="button-primary text-lg button">
