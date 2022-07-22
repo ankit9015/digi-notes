@@ -1,6 +1,6 @@
 <h1 align="center"> Digi-Notes</h1>
 <p align="center">A notes app for your everyday productivity</p>
-<p  align="center"><a href="https://digi-notes-app-1.netlify.app/notes">Live link</a><p>
+<p  align="center"><a href="https://digi-notes-app.netlify.app/">Live link</a><p>
 <br />
 
 ---
