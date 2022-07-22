@@ -2,11 +2,14 @@ const defaultFilterState = {
   sort: "",
   labels: [],
   priorities: [],
+  searchQuery: "",
 };
 
 const filterReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "SEARCH":
+      return { ...state, searchQuery: payload.trim() };
     case "FILTER-LABEL":
       return state.labels.includes(payload)
         ? {

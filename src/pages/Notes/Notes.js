@@ -1,31 +1,37 @@
-import { useState } from "react";
-import FilterModal from "../../components/FilterModal/FilterModal";
-import ModalNoteEditor from "../../components/ModalNoteEditor/ModalNoteEditor";
+import { useEffect, useState } from "react";
+import Modal from "../../components/Modal/Modal";
 import Note from "../../components/Note/Note";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import SearchBox from "../../components/SearchBox/SearchBox";
-import { useFilter } from "../../context/FilterContext/FilterContext";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 import { defaultNotesState } from "../../context/NotesContext/notesReducer";
+import screenSize from "../../utils/helperFunctions/screenSize";
 import "../pages.css";
 
 function Notes() {
   const { notesList } = useNotes();
-  const { filteredList } = useFilter();
   const [showNotesEditor, setShowNotesEditor] = useState(false);
   const { notesDispatch } = useNotes();
-  const pinnedNotes = filteredList.filter((item) => item.isPinned);
-  const notPinnedNotes = filteredList.filter((item) => !item.isPinned);
-  const [showFilter, setShowFilter] = useState(false);
-  return (
-    <div className="flex-column flex-align-center gap-5">
-      <SearchBox showModal={setShowFilter} givenList={notesList} />
-      {showFilter && <FilterModal />}
-      <Note
-        className={showNotesEditor ? "" : "display-none"}
-        notesDisplayToggle={setShowNotesEditor}
-      />
+  const pinnedNotes = notesList.filter((item) => item.isPinned);
+  const notPinnedNotes = notesList.filter((item) => !item.isPinned);
+  const { width } = screenSize();
 
+  useEffect(() => {
+    document.title = "Notes";
+  }, []);
+
+  return (
+    <div className="flex-column flex-align-center gap-5 notes-page">
+      {showNotesEditor ? (
+        width > 768 ? (
+          <Note notesDisplayToggle={setShowNotesEditor} />
+        ) : (
+          <Modal closeModal={() => setShowNotesEditor(false)}>
+            <Note notesDisplayToggle={setShowNotesEditor} />
+          </Modal>
+        )
+      ) : (
+        ""
+      )}
       {pinnedNotes.length > 0 && (
         <div className="pinned-notes flex-column">
           <h3 className="H3">Pinned Notes</h3>

@@ -6,20 +6,22 @@ import { AuthProvider } from "./context/AuthContext/AuthContext";
 import { NotesProvider } from "./context/NotesContext/NotesContext";
 import { ArchiveProvider } from "./context/ArchiveContext/ArchiveContext";
 import { FilterProvider } from "./context/FilterContext/FilterContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext/ThemeContext";
 
 function App() {
-  const [isDarkTheme, setTheme] = useState(false);
-
+  const [showNavbar, setShowNavbar] = useState(false);
   return (
-    <div className={`App flex-column ${isDarkTheme ? "dark-theme" : ""}`}>
+    <div className={`App flex-column`}>
       <AuthProvider>
         <NotesProvider>
-          <FilterProvider>
-            <ArchiveProvider>
-              <Header setTheme={setTheme} isDarkTheme={isDarkTheme} />
-              <Main />
-            </ArchiveProvider>
-          </FilterProvider>
+          <ArchiveProvider>
+            <FilterProvider>
+              <ThemeProvider>
+                <Header setShowNavbar={setShowNavbar} />
+                <Main showNavbar={showNavbar} />
+              </ThemeProvider>
+            </FilterProvider>
+          </ArchiveProvider>
         </NotesProvider>
       </AuthProvider>
     </div>

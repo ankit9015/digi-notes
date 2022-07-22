@@ -1,21 +1,34 @@
-@import url(https://unpkg.com/mockman-js@latest/dist/style.css);
 @import url(https://socket-ui-1.netlify.app/components/components.css);
 
 html {
-  --primary-color: #508dce;
-  --secondary-color: #ee2f5c;
-  --theme-background: rgb(243, 239, 239);
+  --primary-color: hsl(211, 67%, 49%);
+  --accent-color: #8ed7f6;
+  --secondary-color: #e7364e;
+  --theme-background: rgb(234, 226, 226);
+  --dark-bg: rgb(39, 38, 38);
+  --dark-black: rgb(10, 10, 10);
+  --translucent-gray: rgba(128, 128, 128, 0.844);
+  box-sizing: border-box;
 }
 
 .dark-theme {
   --theme-background: rgb(39, 38, 38);
+  --translucent-gray: rgba(81, 80, 80, 0.76);
   color: var(--white);
-  background-color: rgb(10, 10, 10);
+  background-color: var(--dark-black);
   border-color: var(--white);
 }
 
+.dark-theme input,
+.dark-theme select {
+  background-color: var(--dark-black);
+  color: var(--white);
+}
 .App {
   min-height: 100vh;
+  min-width: 100%;
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .display-none {
@@ -29,38 +42,38 @@ html {
   color: inherit;
 }
 
-@media only screen and (min-width: 480px) {
-  html {
-    font-size: 45%;
-  }
+.icon-button:hover {
+  transform: scale(1.05);
 }
 
-@media only screen and (min-width: 640px) {
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 480px) {
   html {
     font-size: 47%;
   }
-}
-
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 50%;
+  .button {
+    min-width: 48px;
+    min-height: 40px;
+    border-radius: 5px;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 480px) and (max-width: 768px) {
   html {
-    font-size: 52.5%;
+    font-size: 50%;
+  }
+  .button {
+    min-width: 48px;
+    min-height: 40px;
+    border-radius: 5px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   html {
-    font-size: 57.5%;
-  }
-}
-
-@media only screen and (min-width: 1536px) {
-  html {
-    font-size: 62.5%;
+    font-size: 57%;
   }
 }

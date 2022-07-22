@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNotes } from "../../context/NotesContext/NotesContext";
+import Highlight from "react-highlighter";
 
 import {
   BiArchiveIn,
@@ -7,7 +8,6 @@ import {
   BiTrashAlt,
   BsPin,
   BsPinFill,
-  MdClose,
   MdEdit,
   FaTrashRestoreAlt,
 } from "../../utils/icons/icons";
@@ -16,9 +16,10 @@ import "./note-card.css";
 import "../Note/note.css";
 import ModalNoteEditor from "../ModalNoteEditor/ModalNoteEditor";
 import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
+import Modal from "../Modal/Modal";
 
 function NoteCard(props) {
-  const { variant, noteDetails } = props;
+  const { variant, noteDetails, highlights } = props;
 
   const { updateNotePinStatus, addNote, deleteNote, trash } = useNotes();
   const [modalDisplay, setModalDisplay] = useState(false);
@@ -27,42 +28,58 @@ function NoteCard(props) {
   return (
     <div className={`note-card text-md ${noteDetails.cardColor}`}>
       {modalDisplay && (
-        <ModalNoteEditor
-          currentNote={noteDetails}
-          setModalDisplay={setModalDisplay}
-        />
+        <Modal
+          closeModal={() => {
+            setModalDisplay(false);
+          }}
+        >
+          <ModalNoteEditor
+            currentNote={noteDetails}
+            setModalDisplay={setModalDisplay}
+          />
+        </Modal>
       )}
       <div className="note-card-header">
         <span className="priority-info">Priority: {noteDetails.priority}</span>
-        <button
-          className=" icon-button text-lg"
-          onClick={() => setModalDisplay((prev) => !prev)}
-        >
-          <MdEdit />
-        </button>
 
         {!variant && (
-          <button
-            className=" icon-button text-lg"
-            onClick={() => updateNotePinStatus(noteDetails)}
-          >
-            {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
-          </button>
+          <>
+            <button
+              className=" icon-button text-lg"
+              onClick={() => setModalDisplay((prev) => !prev)}
+            >
+              <MdEdit />
+            </button>
+
+            <button
+              className=" icon-button text-lg"
+              onClick={() => updateNotePinStatus(noteDetails)}
+            >
+              {noteDetails.isPinned ? <BsPinFill /> : <BsPin />}
+            </button>
+          </>
         )}
       </div>
-      <p className="text-lg m-xs">{noteDetails.title}</p>
-      <p className="text-lg">{noteDetails.description}</p>
+      <p className="text-md m-xs">
+        <Highlight matchClass="highlighted-text" search={highlights ?? ""}>
+          {noteDetails.title}
+        </Highlight>
+      </p>
+      <p className="text-md">
+        <Highlight matchClass="highlighted-text" search={highlights ?? ""}>
+          {noteDetails.description}
+        </Highlight>
+      </p>
 
-      <div className="tags-list m-xs">
+      <div className="tags-list m-xs ">
         {noteDetails.tags.map((tag) => (
           <span key={tag} className="note-tags text-md">
-            {tag}
-            <MdClose aria-hidden="true" />
+            <span className="">{tag}</span>
           </span>
         ))}
       </div>
-      <div className="note-card-footer flex-row">
-        <div className="note-date">
+      <div className="note-footer flex-row flex-wrap text-lg">
+        <div className="note-date text-md">
           Created at: {new Date(noteDetails.createdAt).toLocaleDateString()}
         </div>
         <div className="note-buttons">

@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import SearchBox from "../../components/SearchBox/SearchBox";
-import { useArchive } from "../../context/ArchiveContext/ArchiveContext";
 import { useNotes } from "../../context/NotesContext/NotesContext";
 
 function Trash() {
   const { trash } = useNotes();
 
+  useEffect(() => {
+    document.title = "Trash";
+  }, []);
+
   return (
     <div className="flex-column flex-align-center gap-5">
-      <SearchBox />
       {trash.length > 0 && (
         <>
           <h3 className="H3">Trash</h3>

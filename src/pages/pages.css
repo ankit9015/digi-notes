@@ -22,11 +22,11 @@
 
 .form-card {
   padding: 10px;
-  max-width: 45rem;
+  max-width: 30%;
 }
 
 .create-note-button {
-  position: absolute;
+  position: fixed;
   bottom: 10rem;
   left: 10rem;
 }
@@ -35,4 +35,50 @@
 .user-notes {
   margin: 2.5rem 0;
   gap: 1rem;
+}
+
+.notes-page,
+.login-main,
+.signup-main,
+.hero-wrapper,
+.filter-notes-page {
+  min-width: 100%;
+  min-height: 100%;
+  padding-bottom: 2rem;
+}
+
+.filter-notes-page {
+  position: relative;
+}
+
+.hero-image {
+  max-width: 50%;
+}
+
+.page-not-found {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 1020px) {
+  .form-card {
+    max-width: 45%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .form-card {
+    max-width: 55%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .form-card {
+    max-width: 70%;
+  }
+  .hero-image {
+    max-width: 70%;
+  }
 }

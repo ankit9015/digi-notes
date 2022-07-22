@@ -6,11 +6,17 @@ import "./color-button.css";
 function ColorButton(props) {
   const { setModal, modalState } = props;
   const [showDropdown, setShowDropdown] = useState(false);
-  const cardColors = ["redCard", "blueCard", "orangeCard", "greenCard"];
+  const cardColors = [
+    "redCard",
+    "blueCard",
+    "orangeCard",
+    "greenCard",
+    "no-color",
+  ];
   const { notesDispatch } = useNotes();
 
   return (
-    <span className="color-picker dropdown-container">
+    <span className={`color-picker dropdown-container ${props.className}`}>
       <button
         className="text-lg icon-button"
         onClick={(e) => {

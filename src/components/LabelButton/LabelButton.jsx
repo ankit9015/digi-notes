@@ -4,19 +4,33 @@ import { useNotes } from "../../context/NotesContext/NotesContext";
 import { MdOutlineLabel } from "../../utils/icons/icons";
 import "./label-button.css";
 
-function LabelButton({ setModal, modalState }) {
+function LabelButton(props) {
+  const { setModal, modalState } = props;
   const [newLabel, setNewLabel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const { notesState, notesDispatch, uniqueLabels } = useNotes();
-  const isInTags = (label) => notesState.tags.includes(label);
+  const isInTags = (label) =>
+    modalState
+      ? modalState.tags.includes(label)
+      : notesState.tags.includes(label);
+
   const labelCheckToggle = (label) => {
-    isInTags(label)
-      ? notesDispatch({ type: "REMOVE-TAG", payload: label })
-      : notesDispatch({ type: "UPDATE-TAGS", payload: label });
+    if (setModal && !modalState.tags.includes(label)) {
+      setModal({
+        ...modalState,
+        tags: [...modalState.tags, label],
+      });
+    } else {
+      isInTags(label)
+        ? notesDispatch({ type: "REMOVE-TAG", payload: label })
+        : notesDispatch({ type: "UPDATE-TAGS", payload: label });
+    }
   };
 
   return (
-    <span className="text-md dropdown-container">
+    <span
+      className={`text-md label-button dropdown-container ${props.className}`}
+    >
       <button
         className="text-lg icon-button"
         onClick={(e) => {
@@ -40,7 +54,7 @@ function LabelButton({ setModal, modalState }) {
             className="text-md"
             onClick={(e) => {
               e.preventDefault();
-              if (!isInTags(newLabel)) {
+              if (newLabel !== "" && !isInTags(newLabel)) {
                 modalState
                   ? setModal({
                       ...modalState,
@@ -56,7 +70,7 @@ function LabelButton({ setModal, modalState }) {
         </div>
         <ul>
           {uniqueLabels.map((label) => (
-            <label key={label}>
+            <label key={label} className="unique-tags">
               <input
                 type="checkbox"
                 name={label}

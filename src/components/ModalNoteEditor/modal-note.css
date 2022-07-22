@@ -1,3 +1,15 @@
 .modal-note-editor {
-  position: fixed;
+  width: 45vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-note-editor {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal-note-editor {
+    width: 80vw;
+  }
 }
