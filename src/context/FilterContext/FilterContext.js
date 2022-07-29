@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useReducer } from "react";
 import { useNotes } from "../NotesContext/NotesContext";
 import {
-  isDefault,
   searchFilter,
   cumulateiveFilter,
   dateSort,
@@ -31,8 +30,7 @@ const FilterProvider = ({ children }) => {
     dateSort,
     filterLabels,
     filterPriorities,
-    searchFilter,
-    isDefault
+    searchFilter
   )(listToFilter, filterState);
 
   return (
