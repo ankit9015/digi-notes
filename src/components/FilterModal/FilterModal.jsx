@@ -5,7 +5,7 @@ import { MdClose } from "../../utils/icons/icons";
 import "./filter-modal.css";
 
 function FilterModal({ showModal }) {
-  const { setFilteredList, filterState, filterDispatch } = useFilter();
+  const { filterState, filterDispatch } = useFilter();
   const { uniqueLabels } = useNotes();
   return (
     <div className="filter-modal flex-column">
@@ -20,7 +20,6 @@ function FilterModal({ showModal }) {
         className="button button-outline-secondary clear-button text-md"
         onClick={() => {
           filterDispatch({ type: "CLEAR-ALL" });
-          setFilteredList([]);
         }}
       >
         Clear All

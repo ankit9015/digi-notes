@@ -54,14 +54,6 @@ const searchFilter = (givenList, filterState) => {
   });
 };
 
-const isDefault = (givenList, filterState) => {
-  if (filterState.sort !== "") return givenList;
-  if (filterState.searchQuery !== "") return givenList;
-  if (filterState.labels.length !== 0) return givenList;
-  if (filterState.priorities.length !== 0) return givenList;
-  else return [];
-};
-
 const cumulateiveFilter = (...filters) => {
   return (givenList, filterState) => {
     const generatedList = filters.reduce(
@@ -73,7 +65,6 @@ const cumulateiveFilter = (...filters) => {
 };
 
 export {
-  isDefault,
   searchFilter,
   cumulateiveFilter,
   filterLabels,
