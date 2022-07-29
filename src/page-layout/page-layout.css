@@ -16,6 +16,7 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
+  background-color: var(--white);
 }
 
 .dark-theme .global-header {
